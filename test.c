@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 18:10:36 by lide              #+#    #+#             */
-/*   Updated: 2022/04/18 19:15:12 by lide             ###   ########.fr       */
+/*   Updated: 2022/04/19 18:40:36 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	ft_key(int keycode, t_box *box)
 	{
 		for (int i = 0; i < SPEED; i++)
 		{
+			if (box->y == 10)
+				return (0);
 			box->y--;
 			dr_pixel(box->img, box->x, box->y, COLOURS);
 		}
@@ -42,6 +44,8 @@ int	ft_key(int keycode, t_box *box)
 	{
 		for (int i = 0; i < SPEED; i++)
 		{
+			if (box->y == 1070)
+				return (0);
 			box->y++;
 			dr_pixel(box->img, box->x, box->y, COLOURS);
 		}
@@ -50,6 +54,8 @@ int	ft_key(int keycode, t_box *box)
 	{
 		for (int i = 0; i < SPEED; i++)
 		{
+			if (box->x == 10)
+				return (0);
 			box->x--;
 			dr_pixel(box->img, box->x, box->y, COLOURS);
 		}
@@ -58,6 +64,8 @@ int	ft_key(int keycode, t_box *box)
 	{
 		for (int i = 0; i < SPEED; i++)
 		{
+			if (box->x == 1910)
+				return (0);
 			box->x++;
 			dr_pixel(box->img, box->x, box->y, COLOURS);
 		}

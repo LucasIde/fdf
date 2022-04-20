@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 18:08:54 by lide              #+#    #+#             */
-/*   Updated: 2022/04/18 19:22:27 by lide             ###   ########.fr       */
+/*   Updated: 2022/04/19 18:41:03 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct	s_box
 # include <stdlib.h>
 # include <stdio.h>
 # define KEY_W 13
-# define SPEED 100
+# define SPEED 150
 # define COLOURS 0x8fE74C3C
 
 #endif
