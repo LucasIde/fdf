@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 18:10:36 by lide              #+#    #+#             */
-/*   Updated: 2022/04/19 18:40:36 by lide             ###   ########.fr       */
+/*   Updated: 2022/04/22 07:49:41 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,3 +105,119 @@ int	main(void)
 	mlx_loop(box.mlx_ptr);
 	return (0);
 }
+
+// void	dr_line(t_box *box, int x, int y)
+// {
+// 	int	dx;
+// 	int	dy;
+// 	int	p;
+
+// 	if (box->y > y)
+// 	{
+// 		dx = x;
+// 		dy = y;
+// 		x = box->x;
+// 		y = box->y;
+// 		box->x = dx;
+// 		box->y = dy;
+// 		dr_pixel(box->img, box->x, box->y, 0xE74C3C);
+// 	}
+// 	if (x >= box->x)
+// 	{
+// 		dx = x - box->x;
+// 		dy = y - box->y;
+// 	}
+// 	else if (x < box->x)
+// 	{
+// 		dx = box->x - x;
+// 		dy = y - box->y;
+// 	}
+
+// 				// printf("x init %d | y init %d | x end %d | y end %d\n", box->x, box->y, x, y);
+// 				// if (box->x == 960)
+// 				// 	printf("x = %d | y = %d\n", box->x, box->y);
+// 	if (x >= box->x)
+// 	{
+// 		if (dx >= dy)
+// 		{
+// 			p = 2 * (dy - dx);
+// 			while (box->x <= x && box->y <= y && y < 1081 && x < 1921 && x > -1 && y > -1)
+// 			{
+// 				if (p < 0)
+// 				{
+// 					p = p + (2 * dy);
+// 					box->x++;
+// 				}
+// 				else if (p >= 0)
+// 				{
+// 					p = p + (2 * (dy - dx));
+// 					box->x++;
+// 					box->y++;
+// 				}
+// 				dr_pixel(box->img, box->x, box->y, 0xE74C3C);
+// 			}
+// 		}
+// 		else if (dx < dy)
+// 		{
+// 			p = 2 * (dx - dy);
+// 			while (box->x <= x && box->y <= y && y < 1081 && x < 1921 && x > -1 && y > -1)
+// 			{
+// 				if (p <= 0)
+// 				{
+// 					p = p + (2 * dx);
+// 					box->y++;
+// 				}
+// 				else if (p >0)
+// 				{
+// 					p = p + (2 * (dx - dy));
+// 					box->x++;
+// 					box->y++;
+// 				}
+// 				dr_pixel(box->img, box->x, box->y, 0xE74C3C);
+// 			}
+// 		}
+// 	}
+// 	else if (x < box->x)
+// 	{
+// 		if (dx > dy)
+// 		{
+// 			p = 2 * (dy - dx);
+// 			while ((x <= box->x && y >= box->y) && y < 1081 && x < 1921 && x > -1 && y > -1)
+// 			{
+// 				if (p <= 0)
+// 				{
+// 					p = p + (2 * dy);
+// 					box->x--;
+// 				}
+// 				else if (p > 0)
+// 				{
+// 					p = p + (2 * (dy - dx));
+// 					box->x--;
+// 					box->y++;
+// 				}
+// 				dr_pixel(box->img, box->x, box->y, 0xE74C3C);
+// 			}
+// 		}
+// 		else if (dx <= dy)
+// 		{
+// 			p = 2 * (dx - dy);
+// 			while ((x <= box->x && y >= box->y) && y < 1081 && x < 1921 && x > -1 && y > -1)
+// 			{
+// 				if (p < 0)
+// 				{
+// 					p = p + (2 * dx);
+// 					box->y++;
+// 				}
+// 				else if (p >= 0)
+// 				{
+// 					p = p + (2 * (dx - dy));
+// 					box->x-- ;
+// 					box->y++;
+// 				}
+// 				dr_pixel(box->img, box->x, box->y, 0xE74C3C);
+// 			}
+// 		}
+// 	}
+// 	mlx_put_image_to_window(box->mlx_ptr, box->win_ptr, box->img->img, 0, 0);
+// }
+
