@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 18:10:36 by lide              #+#    #+#             */
-/*   Updated: 2022/04/22 07:49:41 by lide             ###   ########.fr       */
+/*   Updated: 2022/04/25 21:00:00 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,118 +106,116 @@ int	main(void)
 	return (0);
 }
 
-// void	dr_line(t_box *box, int x, int y)
+// void	dr_line(t_box *box)
 // {
 // 	int	dx;
 // 	int	dy;
 // 	int	p;
 
-// 	if (box->y > y)
+// 	if (box->ci->y > box->ce->y)
 // 	{
-// 		dx = x;
-// 		dy = y;
-// 		x = box->x;
-// 		y = box->y;
-// 		box->x = dx;
-// 		box->y = dy;
-// 		dr_pixel(box->img, box->x, box->y, 0xE74C3C);
+// 		box->ct->x = box->ci->x;
+// 		box->ct->y = box->ci->y;
+// 		box->ci->x = box->ce->x;
+// 		box->ci->y = box->ce->y;
+// 		dr_pixel(box->img, box->ce->x, box->ce->y, 0xE74C3C);
+// 		// printf("%d\n", y);
 // 	}
-// 	if (x >= box->x)
+// 	else
 // 	{
-// 		dx = x - box->x;
-// 		dy = y - box->y;
+// 		box->ct->x = box->ce->x;
+// 		box->ct->y = box->ce->y;
 // 	}
-// 	else if (x < box->x)
-// 	{
-// 		dx = box->x - x;
-// 		dy = y - box->y;
-// 	}
+// 	if (box->ct->x >= box->ci->x)
+// 		dx = box->ct->x - box->ci->x;
+// 	else if (box->ct->x < box->ci->x)
+// 		dx = box->ci->x - box->ct->x;
+// 	dy = box->ct->y - box->ci->y;
 
-// 				// printf("x init %d | y init %d | x end %d | y end %d\n", box->x, box->y, x, y);
-// 				// if (box->x == 960)
-// 				// 	printf("x = %d | y = %d\n", box->x, box->y);
-// 	if (x >= box->x)
+// 				// printf("x init %d | y init %d | x end %d | y end %d\n", box->ci->x, box->ci->y, x, y);
+// 				// if (box->ci->x == 960)
+// 				// 	printf("x = %d | y = %d\n", box->ci->x, box->ci->y);
+// 	if (box->ct->x >= box->ci->x)
 // 	{
 // 		if (dx >= dy)
 // 		{
 // 			p = 2 * (dy - dx);
-// 			while (box->x <= x && box->y <= y && y < 1081 && x < 1921 && x > -1 && y > -1)
+// 			while (box->ci->x <= box->ct->x && box->ci->y <= box->ct->y && box->ct->y < 1081 && box->ct->x < 1921 && box->ct->x > -1 && box->ct->y > -1)
 // 			{
 // 				if (p < 0)
 // 				{
 // 					p = p + (2 * dy);
-// 					box->x++;
+// 					box->ci->x++;
 // 				}
 // 				else if (p >= 0)
 // 				{
 // 					p = p + (2 * (dy - dx));
-// 					box->x++;
-// 					box->y++;
+// 					box->ci->x++;
+// 					box->ci->y++;
 // 				}
-// 				dr_pixel(box->img, box->x, box->y, 0xE74C3C);
+// 				dr_pixel(box->img, box->ci->x, box->ci->y, 0xbaaaaa);
 // 			}
 // 		}
 // 		else if (dx < dy)
 // 		{
 // 			p = 2 * (dx - dy);
-// 			while (box->x <= x && box->y <= y && y < 1081 && x < 1921 && x > -1 && y > -1)
+// 			while (box->ci->x <= box->ct->x && box->ci->y <= box->ct->y && box->ct->y < 1081 && box->ct->x < 1921 && box->ct->x > -1 && box->ct->y > -1)
 // 			{
 // 				if (p <= 0)
 // 				{
 // 					p = p + (2 * dx);
-// 					box->y++;
+// 					box->ci->y++;
 // 				}
 // 				else if (p >0)
 // 				{
 // 					p = p + (2 * (dx - dy));
-// 					box->x++;
-// 					box->y++;
+// 					box->ci->x++;
+// 					box->ci->y++;
 // 				}
-// 				dr_pixel(box->img, box->x, box->y, 0xE74C3C);
+// 				dr_pixel(box->img, box->ci->x, box->ci->y, 0xE74C3C);
 // 			}
 // 		}
 // 	}
-// 	else if (x < box->x)
+// 	else if (box->ct->x < box->ci->x)
 // 	{
 // 		if (dx > dy)
 // 		{
 // 			p = 2 * (dy - dx);
-// 			while ((x <= box->x && y >= box->y) && y < 1081 && x < 1921 && x > -1 && y > -1)
+// 			while ((box->ct->x <= box->ci->x && box->ct->y >= box->ci->y) && box->ct->y < 1081 && box->ct->x < 1921 && box->ct->x > -1 && box->ct->y > -1)
 // 			{
 // 				if (p <= 0)
 // 				{
 // 					p = p + (2 * dy);
-// 					box->x--;
+// 					box->ci->x--;
 // 				}
 // 				else if (p > 0)
 // 				{
 // 					p = p + (2 * (dy - dx));
-// 					box->x--;
-// 					box->y++;
+// 					box->ci->x--;
+// 					box->ci->y++;
 // 				}
-// 				dr_pixel(box->img, box->x, box->y, 0xE74C3C);
+// 				dr_pixel(box->img, box->ci->x, box->ci->y, 0xB22222);
 // 			}
 // 		}
 // 		else if (dx <= dy)
 // 		{
 // 			p = 2 * (dx - dy);
-// 			while ((x <= box->x && y >= box->y) && y < 1081 && x < 1921 && x > -1 && y > -1)
+// 			while ((box->ct->x <= box->ci->x && box->ct->y >= box->ci->y) && box->ct->y < 1081 && box->ct->x < 1921 && box->ct->x > -1 && box->ct->y > -1)
 // 			{
 // 				if (p < 0)
 // 				{
 // 					p = p + (2 * dx);
-// 					box->y++;
+// 					box->ci->y++;
 // 				}
 // 				else if (p >= 0)
 // 				{
 // 					p = p + (2 * (dx - dy));
-// 					box->x-- ;
-// 					box->y++;
+// 					box->ci->x--;
+// 					box->ci->y++;
 // 				}
-// 				dr_pixel(box->img, box->x, box->y, 0xE74C3C);
+// 				dr_pixel(box->img, box->ci->x, box->ci->y, 0xE74C3C);
 // 			}
 // 		}
 // 	}
 // 	mlx_put_image_to_window(box->mlx_ptr, box->win_ptr, box->img->img, 0, 0);
 // }
-

@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 18:08:54 by lide              #+#    #+#             */
-/*   Updated: 2022/04/22 08:28:20 by lide             ###   ########.fr       */
+/*   Updated: 2022/04/25 19:21:33 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,17 @@ typedef struct s_data
 	int		endian;
 }				t_data;
 
+typedef struct s_point
+{
+	int	x;
+	int	y;
+}				t_point;
+
 typedef struct s_box
 {
-	int		x;
-	int		y;
-	int		x_e;
-	int		y_e;
+	t_point	*ci;
+	t_point	*ct;
+	t_point	*ce;
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_data	*img;

@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 07:52:24 by lide              #+#    #+#             */
-/*   Updated: 2022/04/22 08:51:50 by lide             ###   ########.fr       */
+/*   Updated: 2022/04/25 20:58:05 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,23 @@ void	case1(t_box *box, int dx, int dy)
 	int	p;
 
 	p = 2 * (dy - dx);
-	while (box->x <= box->x_e && box->y <= box->y_e && box->y_e < 1081
-		&& box->x_e < 1921 && box->x_e > -1 && box->y_e > -1)
+	dr_pixel(box->img, box->ci->x, box->ci->y, 0xbaaaaa);
+	while (box->ci->x <= box->ct->x && box->ci->y <= box->ct->y
+		&& box->ct->y < 1081 && box->ct->x < 1921
+		&& box->ct->x > -1 && box->ct->y > -1)
 	{
 		if (p < 0)
 		{
 			p = p + (2 * dy);
-			box->x++;
+			box->ci->x++;
 		}
 		else if (p >= 0)
 		{
 			p = p + (2 * (dy - dx));
-			box->x++;
-			box->y++;
+			box->ci->x++;
+			box->ci->y++;
 		}
-		printf("x init %d | y init %d | x end %d | y end %d\n", box->x, box->y, box->x_e, box->y_e);
-		dr_pixel(box->img, box->x, box->y, 0xE74C3C);
+		dr_pixel(box->img, box->ci->x, box->ci->y, 0xbaaaaa);
 	}
 	mlx_put_image_to_window(box->mlx_ptr, box->win_ptr, box->img->img, 0, 0);
 }
@@ -42,22 +43,23 @@ void	case2(t_box *box, int dx, int dy)
 	int	p;
 
 	p = 2 * (dx - dy);
-	while (box->x <= box->x_e && box->y <= box->y_e && box->y_e < 1081
-		&& box->x_e < 1921 && box->x_e > -1 && box->y_e > -1)
+	dr_pixel(box->img, box->ci->x, box->ci->y, 0xE74C3C);
+	while (box->ci->x <= box->ct->x && box->ci->y <= box->ct->y
+		&& box->ct->y < 1081 && box->ct->x < 1921
+		&& box->ct->x > -1 && box->ct->y > -1)
 	{
 		if (p <= 0)
 		{
 			p = p + (2 * dx);
-			box->y++;
+			box->ci->y++;
 		}
 		else if (p > 0)
 		{
 			p = p + (2 * (dx - dy));
-			box->x++;
-			box->y++;
+			box->ci->x++;
+			box->ci->y++;
 		}
-		printf("x init %d | y init %d | x end %d | y end %d\n", box->x, box->y, box->x_e, box->y_e);
-		dr_pixel(box->img, box->x, box->y, 0xE74C3C);
+		dr_pixel(box->img, box->ci->x, box->ci->y, 0xE74C3C);
 	}
 	mlx_put_image_to_window(box->mlx_ptr, box->win_ptr, box->img->img, 0, 0);
 }
@@ -67,22 +69,23 @@ void	case3(t_box *box, int dx, int dy)
 	int	p;
 
 	p = 2 * (dy - dx);
-	while (box->x <= box->x_e && box->y <= box->y_e && box->y_e < 1081
-		&& box->x_e < 1921 && box->x_e > -1 && box->y_e > -1)
+	dr_pixel(box->img, box->ci->x, box->ci->y, 0xB22222);
+	while (box->ct->x <= box->ci->x && box->ct->y >= box->ci->y
+		&& box->ct->y < 1081 && box->ct->x < 1921
+		&& box->ct->x > -1 && box->ct->y > -1)
 	{
 		if (p <= 0)
 		{
 			p = p + (2 * dy);
-			box->x--;
+			box->ci->x--;
 		}
 		else if (p > 0)
 		{
 			p = p + (2 * (dy - dx));
-			box->x--;
-			box->y++;
+			box->ci->x--;
+			box->ci->y++;
 		}
-		printf("x init %d | y init %d | x end %d | y end %d\n", box->x, box->y, box->x_e, box->y_e);
-		dr_pixel(box->img, box->x, box->y, 0xE74C3C);
+		dr_pixel(box->img, box->ci->x, box->ci->y, 0xB22222);
 	}
 	mlx_put_image_to_window(box->mlx_ptr, box->win_ptr, box->img->img, 0, 0);
 }
@@ -92,22 +95,23 @@ void	case4(t_box *box, int dx, int dy)
 	int	p;
 
 	p = 2 * (dx - dy);
-	while (box->x <= box->x_e && box->y <= box->y_e && box->y_e < 1081
-		&& box->x_e < 1921 && box->x_e > -1 && box->y_e > -1)
+	dr_pixel(box->img, box->ci->x, box->ci->y, 0xB88888);
+	while (box->ct->x <= box->ci->x && box->ct->y >= box->ci->y
+		&& box->ct->y < 1081 && box->ct->x < 1921
+		&& box->ct->x > -1 && box->ct->y > -1)
 	{
 		if (p < 0)
 		{
 			p = p + (2 * dx);
-			box->y++;
+			box->ci->y++;
 		}
 		else if (p >= 0)
 		{
 			p = p + (2 * (dx - dy));
-			box->x-- ;
-			box->y++;
+			box->ci->x--;
+			box->ci->y++;
 		}
-		printf("x init %d | y init %d | x end %d | y end %d\n", box->x, box->y, box->x_e, box->y_e);
-		dr_pixel(box->img, box->x, box->y, 0xE74C3C);
+		dr_pixel(box->img, box->ci->x, box->ci->y, 0xB88888);
 	}
 	mlx_put_image_to_window(box->mlx_ptr, box->win_ptr, box->img->img, 0, 0);
 }
@@ -117,21 +121,20 @@ void	dr_line(t_box *box)
 	int	dx;
 	int	dy;
 
-	if (box->y > box->y_e)
-		ft_swap(box);
-	if (box->x_e >= box->x)
-		dx = box->x_e - box->x;
-	else if (box->x_e < box->x)
-		dx = box->x - box->x_e;
-	dy = box->y_e - box->y;
-	if (box->x_e >= box->x)
+	ft_swap(box);
+	if (box->ct->x >= box->ci->x)
+		dx = box->ct->x - box->ci->x;
+	else if (box->ct->x < box->ci->x)
+		dx = box->ci->x - box->ct->x;
+	dy = box->ct->y - box->ci->y;
+	if (box->ct->x >= box->ci->x)
 	{
 		if (dx >= dy)
 			case1(box, dx, dy);
 		else if (dx < dy)
 			case2(box, dx, dy);
 	}
-	else if (box->x_e < box->x)
+	else if (box->ct->x < box->ci->x)
 	{
 		if (dx > dy)
 			case3(box, dx, dy);
