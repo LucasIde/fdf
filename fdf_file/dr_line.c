@@ -6,11 +6,11 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 07:52:24 by lide              #+#    #+#             */
-/*   Updated: 2022/04/25 20:58:05 by lide             ###   ########.fr       */
+/*   Updated: 2022/04/26 15:11:54 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../includes/fdf.h"
 
 void	case1(t_box *box, int dx, int dy)
 {

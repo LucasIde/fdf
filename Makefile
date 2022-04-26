@@ -6,13 +6,16 @@
 #    By: lide <lide@student.s19.be>                 +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/18 18:11:55 by lide              #+#    #+#              #
-#    Updated: 2022/04/25 20:37:27 by lide             ###   ########.fr        #
+#    Updated: 2022/04/26 18:38:55 by lide             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		=	test2.c\
-				dr_line.c\
-				utils.c
+SRCS		=	fdf_file/fdf.c\
+				fdf_file/dr_line.c\
+				fdf_file/utils.c\
+				fdf_file/split.c\
+				get_next_line/get_next_line.c\
+				get_next_line/get_next_line_utils.c
 
 NAME		= fdf.a
 EXEC		= fdf
