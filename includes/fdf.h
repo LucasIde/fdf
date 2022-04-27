@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 18:08:54 by lide              #+#    #+#             */
-/*   Updated: 2022/04/26 16:33:05 by lide             ###   ########.fr       */
+/*   Updated: 2022/04/27 18:55:56 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "get_next_line.h"
 # include <mlx.h>
 # include <fcntl.h>
+# include <stdio.h>
 # define KEY_W 13
 # define SPEED 150
 # define COLOURS 0x8fE74C3C
@@ -36,6 +37,12 @@ typedef struct s_data
 	int		line_lenght;
 	int		endian;
 }				t_data;
+
+typedef struct s_size
+{
+	int		si;
+	char	*colours;
+}				t_size;
 
 typedef struct s_point
 {
