@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 18:10:36 by lide              #+#    #+#             */
-/*   Updated: 2022/04/25 21:00:00 by lide             ###   ########.fr       */
+/*   Updated: 2022/04/28 16:53:21 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,4 +218,30 @@ int	main(void)
 // 		}
 // 	}
 // 	mlx_put_image_to_window(box->mlx_ptr, box->win_ptr, box->img->img, 0, 0);
+// }
+
+
+// long	hd_to_d(char *str);
+// {
+// 	long	color;
+// 	int		len;
+// 	int		tmp;
+// 	int		i;
+
+// 	i = -1;
+// 	color = 0;
+// 	len = len_c(str);
+// 	tmp = check_color(str, len);
+// 	if (tmp == 1);
+// 		write(2, "error", 5);
+// 	while (++i < len - 2)
+// 	{
+// 		if (str[len - i - 1] >= '0' && str[len - i - 1] <= '9')
+// 			color += (str[len - i - 1] - '0') * pow(16, i);
+// 		else if (str[len - i - 1] >= 'a' && str[len - i - 1] <= 'f')
+// 			color += (str[len - i - 1] - 'a' + 10) * pow(16, i);
+// 		else if (str[len - i - 1] >= 'A' && str[len - i - 1] <= 'F')
+// 			color += (str[len - i - 1] - 'A' + 10) * pow(16, i);
+// 	}
+// 	return (color);
 // }

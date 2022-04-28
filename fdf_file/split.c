@@ -6,13 +6,13 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 16:52:38 by lide              #+#    #+#             */
-/*   Updated: 2022/04/26 16:53:58 by lide             ###   ########.fr       */
+/*   Updated: 2022/04/28 18:02:50 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-static int	words(char const *s, char c)
+int	words(char const *s, char c)
 {
 	int	i;
 	int	nb;
@@ -35,7 +35,7 @@ static int	words(char const *s, char c)
 	return (nb);
 }
 
-static int	letter(char const *s, char c, int i)
+int	letter(char const *s, char c, int i)
 {
 	int	nb;
 
@@ -48,7 +48,7 @@ static int	letter(char const *s, char c, int i)
 	return (nb);
 }
 
-static char	**ft_free(char **s1)
+char	**ft_free(char **s1)
 {
 	int	i;
 
@@ -61,8 +61,7 @@ static char	**ft_free(char **s1)
 	free(s1);
 	return (NULL);
 }
-
-static char	**ft_split2(char const *s, char c, char **s1)
+char	**ft_split2(char const *s, char c, char **s1)
 {
 	int	j;
 	int	j2;
