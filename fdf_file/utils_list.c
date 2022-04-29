@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 13:56:09 by lide              #+#    #+#             */
-/*   Updated: 2022/04/28 16:11:59 by lide             ###   ########.fr       */
+/*   Updated: 2022/04/29 17:15:11 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,10 @@ void	addback(t_list **list, t_list *new)
 		new->before = tmp;
 		tmp->next = new;
 	}
+}
+
+void	list_next(t_list **list)
+{
+	while ((*list)->line != -1)
+		*list = (*list)->next;
 }

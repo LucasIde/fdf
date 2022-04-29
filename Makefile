@@ -6,13 +6,15 @@
 #    By: lide <lide@student.s19.be>                 +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/18 18:11:55 by lide              #+#    #+#              #
-#    Updated: 2022/04/28 17:09:32 by lide             ###   ########.fr        #
+#    Updated: 2022/04/29 17:23:31 by lide             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS		=	fdf_file/fdf.c\
 				fdf_file/utils.c\
+				fdf_file/utils2.c\
 				fdf_file/utils_list.c\
+				fdf_file/utils_libx.c\
 				fdf_file/split.c\
 				get_next_line/get_next_line.c\
 				get_next_line/get_next_line_utils.c

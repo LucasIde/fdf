@@ -6,35 +6,13 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 16:44:27 by lide              #+#    #+#             */
-/*   Updated: 2022/04/28 21:01:25 by lide             ###   ########.fr       */
+/*   Updated: 2022/04/29 17:27:35 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-int	close(int keycode)
-{
-	keycode = 0;
-	exit(0);
-	return (0);
-}
-
-int	ft_key(int keycode)
-{
-	if (keycode == 53)
-		close(0);
-	return (0);
-}
-
-void	dr_pixel(t_data *img, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = img->addr + (y * img->line_lenght + x * (img->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
-}
-
-int	init_data(t_box *box)
+int	init_data(t_box *box)// a mettre dans libxutils
 {
 	// box->ci = malloc(sizeof(t_point));
 	// if (!box->ci)
@@ -69,31 +47,51 @@ int	init_data(t_box *box)
 
 void	free_box(t_box *box)
 {
-	int i;
-	int j;
+	int y;
+	int x;
 
-	i = -1;
-	while (box->he->z[++i])//error pas de limite
-		free(box->he->z[i]);
+	y = -1;
+	while (box->he->z[++y])//error pas de limite
+		free(box->he->z[y]);
 	free(box->he->z);
-	printf("yo\n");
-	i = -1;
-	j = -1;
-	while (box->he->color[++i])
+	y = -1;
+	while (box->he->color[++y])
 	{
-		printf("salut\n");
-		while (box->he->color[i][++j])
-		{
-			printf("coucou\n");
-			free(box->he->color[i][j]);
-		}
-		free(box->he->color[i]);
+		x = -1;
+		while (box->he->color[y][++x])
+			free(box->he->color[y][x]);
+		free(box->he->color[y]);
 	}
-	printf("salut\n");
 	free(box->he->color);
 	free(box->he);
-	free(box->img);
-	printf("hello\n");
+	// free(box->img);
+}
+
+void	free_list(t_list **list)
+{
+	if (*list && (*list)->next != NULL)
+		list_next(list);
+	if ((*list)->next == NULL)
+	{
+		free(*list);
+		*list = NULL;
+	}
+	else if ((int)(*list)->next->content == (int)(*list)->before->content)
+	{
+		(*list)->next->line = -1;
+		(*list)->next->next = NULL;
+		(*list)->next->before = NULL;
+		free(*list);
+		*list = (*list)->next;
+	}
+	else
+	{
+		(*list)->next->line = -1;
+		(*list)->next->before = (*list)->before;
+		(*list)->before->next = (*list)->next;
+		free(*list);
+		*list = (*list)->next;
+	}
 }
 
 void	free_split(char **splited)
@@ -104,43 +102,6 @@ void	free_split(char **splited)
 	while(splited[++i])
 		free(splited[i]);
 	free(splited);
-}
-
-int	check_c(char *splited)
-{
-	int	i;
-
-	i = -1;
-	while (splited[++i])
-	{
-		if (splited[i]<= '0' && splited[i] >= '9')
-		{
-			if (splited[i] == ',')
-				return (1);
-			else
-				return (-1);
-		}
-	}
-	return (0);
-}
-
-int	check_color(char *str, int len)
-{
-	int	i;
-
-	i = 2;
-	if (len < 3 || len > 10)
-		return (1);
-	if (str[0] != '0' || str[1] != 'x')
-		return (1);
-	while (i < len)
-	{
-		if ((str[i] < '0' || str[i] > '9') && (str[i] < 'a' || str[i] > 'f')
-			&& (str[i] < 'A' || str[i] > 'F'))
-			return (1);
-		i++;
-	}
-	return (0);
 }
 
 void	ft_copy(t_box *box, char **splited, int j)
@@ -154,7 +115,6 @@ void	ft_copy(t_box *box, char **splited, int j)
 
 	i = -1;
 	x = len_w(splited);
-	printf("x = %d\n", x);
 	box->he->z[j] = (long *)malloc(sizeof(long) * x);
 	if (!box->he->z[j])
 		write (2, "error", 5);
@@ -195,9 +155,7 @@ void	ft_copy(t_box *box, char **splited, int j)
 			box->he->color[j][i][0] = '\0';
 		}
 	}
-	// box->he->color[j][i] = NULL;
 }
-
 
 void	p_map(t_box *box, char *argv)
 {
@@ -220,8 +178,8 @@ void	p_map(t_box *box, char *argv)
 		if (i == 0)
 			break;
 		new = lstnew(ft_strdup(line));
-		addback(&list, new);
 		free(line);
+		addback(&list, new);
 	}
 	while (list->next != NULL && list->next->line != -1)
 	{
@@ -239,15 +197,20 @@ void	p_map(t_box *box, char *argv)
 	while (++j <= i)
 	{
 		splited = ft_split((char *)list->content, ' ');
-		printf("content : %s\n", list->content);
 		ft_copy(box, splited, j);
 		free_split(splited);
-		list = list->next;
+		if (list->next != NULL)
+			list = list->next;
+	}
+	while (list)
+	{
+		printf("%s\n", (char *)list->content);
+		printf("%d\n", list->line);
+		free_list(&list);
 	}
 	box->he->z[j] = NULL;
 	box->he->color[j] = NULL;
 }
-
 
 int	main(int argc, char **argv)
 {
@@ -255,12 +218,18 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		return (0);
-	init_data(&box);
+	// init_data(&box);
+	box.he = malloc(sizeof(t_height));
+	if (!box.he)
+		return (1);
+	box.he->color = NULL;
+	box.he->z = NULL;
 	p_map(&box, argv[1]);
-	printf("| %ld | %s | \n", box.he->z[1][1], box.he->color[1][1]);
+	printf("| %ld | %s | \n", box.he->z[0][0], box.he->color[0][0]);
 	free_box(&box);
-	mlx_hook(box.win_ptr, 17, 1L << 17, close, &box);
-	mlx_hook(box.win_ptr, 2, 1L << 0, &ft_key, &box);
-	mlx_loop(box.mlx_ptr);
+	system("leaks fdf");
+	// mlx_hook(box.win_ptr, 17, 1L << 17, close, &box);
+	// mlx_hook(box.win_ptr, 2, 1L << 0, &ft_key, &box);
+	// mlx_loop(box.mlx_ptr);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 18:08:54 by lide              #+#    #+#             */
-/*   Updated: 2022/04/28 19:29:36 by lide             ###   ########.fr       */
+/*   Updated: 2022/04/29 17:15:32 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,16 @@ void	dr_pixel(t_data *img, int x, int y, int color);
 void	dr_line(t_box *box);
 void	ft_swap(t_box *box);
 void	addback(t_list **list, t_list *new);
+void	list_next(t_list **list);
 t_list	*lstnew(char *arg);
 long	ft_atoi(char *str);
 char	*ft_strdup(char *s1);
 int		len_w(char **str);
 int		len_c(char *str);
+int	close(int keycode);
+void	dr_pixel(t_data *img, int x, int y, int color);
+int	check_color(char *str, int len);
+int	check_c(char *splited);
+int	ft_key(int keycode, t_box *box);
 
 #endif
