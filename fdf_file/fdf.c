@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 16:44:27 by lide              #+#    #+#             */
-/*   Updated: 2022/04/30 17:50:29 by lide             ###   ########.fr       */
+/*   Updated: 2022/04/30 19:49:55 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	freebox(int error, t_box *box)
 {
 	int	y;
 	int	x;
+	int	i;
 
 	if (error <= -4)
 	{
@@ -60,12 +61,28 @@ void	freebox(int error, t_box *box)
 				free(box->he->color[y][x]);
 			free(box->he->color[y]);
 		}
+		i = 0;
+		while (i <= y && box->he->z[i])
+		{
+			free(box->he->z[i]);
+			i++;
+		}
+		free(box->he->color);
 	}
-	y = -1;
-	if (error <= -3)
+	if (error == -3)
 	{
-		while (box->he->z[++y])
-			free(box->he->z[y]);
+		i = -1;
+		y = 0;
+		while (box->he->z[++i])
+			free(box->he->z[i]);
+		while (y < i && box->he->color[y])
+		{
+			x = -1;
+			while (box->he->color[y][++x])
+				free(box->he->color[y][x]);
+			free(box->he->color[y]);
+			y++;
+		}
 		free(box->he->color);
 	}
 	if (error <= -2)
@@ -98,6 +115,8 @@ void	free_box(t_box *box)
 
 void	free_list(t_list *list)
 {
+	if (!list)
+		return ;
 	if (list && list->next != NULL)
 		list_next(&list);
 	if (list->next == NULL)
@@ -153,7 +172,7 @@ int	ft_copy(t_box *box, char **splited, int j)
 	while (splited[++i])
 	{
 		verif = check_c(splited[i]);
-		if (verif == -1)
+		if (j == 1)//verif == -1)
 		{
 			box->he->z[j] = NULL;
 			write(2, "Error\n", 6);
@@ -242,6 +261,8 @@ int	p_map(t_box *box, char *argv)
 		new = lstnew(line);
 		if (!new)
 		{
+			if (!list)
+				free(line);
 			free_list(list);
 			get_next_line(-1, NULL);
 			write(2, "Error\n", 6);
@@ -266,7 +287,6 @@ int	p_map(t_box *box, char *argv)
 	box->he->color = (char ***)malloc(sizeof(char **) * (i + 2));
 	if (!box->he->color)
 	{
-		// free(box->he->z);// ou mettre z a null et passer par box
 		free_list(list);
 		write(2, "Error\n", 6);
 		return (-2);
@@ -305,9 +325,11 @@ int	main(int argc, char **argv)
 	box.he->color = NULL;
 	box.he->z = NULL;
 	i = p_map(&box, argv[1]);
-	printf("| %ld | %s | \n", box.he->z[0][0], box.he->color[0][0]);
+	// printf("| %ld | %s | \n", box.he->z[0][0], box.he->color[0][0]);
 	if (i != 0)
+	{
 		freebox(i, &box);
+	}
 	else
 		free_box(&box);
 	system("leaks fdf");
