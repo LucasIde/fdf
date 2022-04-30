@@ -6,9 +6,11 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 16:30:24 by lide              #+#    #+#             */
-/*   Updated: 2022/04/29 16:31:08 by lide             ###   ########.fr       */
+/*   Updated: 2022/04/30 17:05:07 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../includes/fdf.h"
 
 int	check_c(char *splited)
 {
@@ -17,7 +19,7 @@ int	check_c(char *splited)
 	i = -1;
 	while (splited[++i])
 	{
-		if (splited[i]<= '0' && splited[i] >= '9')
+		if (splited[i] < '0' || splited[i] > '9')
 		{
 			if (splited[i] == ',')
 				return (1);
@@ -34,7 +36,9 @@ int	check_color(char *str, int len)
 
 	i = 2;
 	if (len < 3 || len > 10)
+	{
 		return (1);
+	}
 	if (str[0] != '0' || str[1] != 'x')
 		return (1);
 	while (i < len)

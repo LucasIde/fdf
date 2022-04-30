@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 13:56:09 by lide              #+#    #+#             */
-/*   Updated: 2022/04/29 17:15:11 by lide             ###   ########.fr       */
+/*   Updated: 2022/04/30 17:45:31 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ t_list	*lstnew(char *arg)
 
 	list = (t_list *)malloc(sizeof(t_list));
 	if (!list)
+	{
+		free(arg);
 		return (NULL);
+	}
 	list->line = -1;
 	list->content = (void *)arg;
 	list->next = NULL;
