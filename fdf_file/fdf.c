@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 16:44:27 by lide              #+#    #+#             */
-/*   Updated: 2022/04/30 19:49:55 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/01 19:15:44 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,106 +45,6 @@ int	init_data(t_box *box)// a mettre dans libxutils
 	return (0);
 }
 
-void	freebox(int error, t_box *box)
-{
-	int	y;
-	int	x;
-	int	i;
-
-	if (error <= -4)
-	{
-		y = -1;
-		while (box->he->color[++y])
-		{
-			x = -1;
-			while (box->he->color[y][++x])
-				free(box->he->color[y][x]);
-			free(box->he->color[y]);
-		}
-		i = 0;
-		while (i <= y && box->he->z[i])
-		{
-			free(box->he->z[i]);
-			i++;
-		}
-		free(box->he->color);
-	}
-	if (error == -3)
-	{
-		i = -1;
-		y = 0;
-		while (box->he->z[++i])
-			free(box->he->z[i]);
-		while (y < i && box->he->color[y])
-		{
-			x = -1;
-			while (box->he->color[y][++x])
-				free(box->he->color[y][x]);
-			free(box->he->color[y]);
-			y++;
-		}
-		free(box->he->color);
-	}
-	if (error <= -2)
-		free(box->he->z);
-	if (error <= -1)
-		free(box->he);
-}
-
-void	free_box(t_box *box)
-{
-	int y;
-	int x;
-
-	y = -1;
-	while (box->he->z[++y])//Error pas de limite
-		free(box->he->z[y]);
-	free(box->he->z);
-	y = -1;
-	while (box->he->color[++y])
-	{
-		x = -1;
-		while (box->he->color[y][++x])
-			free(box->he->color[y][x]);
-		free(box->he->color[y]);
-	}
-	free(box->he->color);
-	free(box->he);
-	// free(box->img);
-}
-
-void	free_list(t_list *list)
-{
-	if (!list)
-		return ;
-	if (list && list->next != NULL)
-		list_next(&list);
-	if (list->next == NULL)
-	{
-		free(list->content);
-		free(list);
-		return ;
-	}
-	while (list->line != 1)
-	{
-		list = list->next;
-		free(list->before->content);
-		free(list->before);
-	}
-	free(list->content);
-	free(list);
-}
-
-void	free_split(char **splited)
-{
-	int	i;
-
-	i = -1;
-	while(splited[++i])
-		free(splited[i]);
-	free(splited);
-}
-
 int	ft_copy(t_box *box, char **splited, int j)
 {
 	int		i;
@@ -159,23 +59,24 @@ int	ft_copy(t_box *box, char **splited, int j)
 	box->he->z[j] = (long *)malloc(sizeof(long) * x);
 	if (!box->he->z[j])
 	{
-		write (2, "Error\n", 6);
+		write (2, "Error : Malloc 1 ft_copy\n", 25);
 		return (-3);
 	}
 	box->he->color[j] = (char **)malloc(sizeof(char *) * (x + 1));
-	if (!box->he->z[j])
+	if (!box->he->color[j])
 	{
-		write (2, "Error\n", 6);
+		write (2, "Error : Malloc 2 ft_copy\n", 25);
 		return (-4);
 	}
 	box->he->color[j][x] = NULL;
 	while (splited[++i])
 	{
 		verif = check_c(splited[i]);
-		if (j == 1)//verif == -1)
+		if (verif == -1)
 		{
-			box->he->z[j] = NULL;
-			write(2, "Error\n", 6);
+			free(box->he->color[j]);
+			box->he->color[j]=NULL;
+			write(2, "Error : a comma is missing before the colors\n", 45);
 			return (-4);
 		}
 		else if (verif == 1)
@@ -184,8 +85,10 @@ int	ft_copy(t_box *box, char **splited, int j)
 			tmp = ft_atoi(str[0]);
 			if (tmp == 2147483649)
 			{
-				box->he->z[j] = NULL;
-				write(2, "Error copy 1", 12);
+				free_split(str);
+				free(box->he->color[j]);
+				box->he->color[j]=NULL;
+				write(2, "Error : value superior to an int\n", 33);
 				return (-4);
 			}
 			box->he->z[j][i] = (int)tmp;
@@ -193,15 +96,19 @@ int	ft_copy(t_box *box, char **splited, int j)
 			tmp = check_color(str[1], len);
 			if (tmp == 1)
 			{
-				box->he->z[j] = NULL;
-				write(2, "Error copy 2", 12);
+				free_split(str);
+				free(box->he->color[j]);
+				box->he->color[j]=NULL;
+				write(2, "Error : wrong color\n", 20);
 				return (-4);
 			}
 			box->he->color[j][i] = (char *)malloc(sizeof(char) * (len + 1));
 			if (!box->he->color[j][i])
 			{
-				box->he->z[j] = NULL;
-				write(2, "Error copy 2", 12);
+				free_split(str);
+				free(box->he->color[j]);
+				box->he->color[j]=NULL;
+				write(2, "Error : Malloc 3 ft_copy\n", 25);
 				return (-4);
 			}
 			x = -1;
@@ -215,16 +122,18 @@ int	ft_copy(t_box *box, char **splited, int j)
 			tmp = ft_atoi(splited[i]);
 			if (tmp == 2147483649)
 			{
-				box->he->z[j] = NULL;
-				write(2, "Error copy 2", 12);
+				free(box->he->color[j]);
+				box->he->color[j]=NULL;
+				write(2, "Error : value superior to an int\n", 33);
 				return (-4);
 			}
 			box->he->z[j][i] = (int)tmp;
 			box->he->color[j][i] = (char *)malloc(sizeof(char) * 1);
 			if (!box->he->color[j][i])
 			{
-				box->he->z[j] = NULL;
-				write(2, "Error copy 2", 12);
+				free(box->he->color[j]);
+				box->he->color[j]=NULL;
+				write(2, "Error : Malloc 4 ft_copy\n", 25);
 				return (-4);
 			}
 			box->he->color[j][i][0] = '\0';
@@ -253,7 +162,7 @@ int	p_map(t_box *box, char *argv)
 		if (i == -1)
 		{
 			free_list(list);
-			write(2, "Error\n", 6);
+			write(2, "Error : get_next_line\n", 22);//peut surement etre retirer (deja ecrit dans gnl)
 			return (-1);
 		}
 		if (i == 0)
@@ -265,7 +174,7 @@ int	p_map(t_box *box, char *argv)
 				free(line);
 			free_list(list);
 			get_next_line(-1, NULL);
-			write(2, "Error\n", 6);
+			write(2, "Error : Malloc lstnew\n", 22);
 			return (-1);
 		}
 		addback(&list, new);
@@ -281,14 +190,14 @@ int	p_map(t_box *box, char *argv)
 	if (!box->he->z)
 	{
 		free_list(list);
-		write(2, "Error\n", 6);
+		write(2, "Error : Malloc 1 p_map\n", 23);
 		return (-1);
 	}
 	box->he->color = (char ***)malloc(sizeof(char **) * (i + 2));
 	if (!box->he->color)
 	{
 		free_list(list);
-		write(2, "Error\n", 6);
+		write(2, "Error : Malloc 2 p_map\n", 23);
 		return (-2);
 	}
 	while (++j <= i)
@@ -326,12 +235,9 @@ int	main(int argc, char **argv)
 	box.he->z = NULL;
 	i = p_map(&box, argv[1]);
 	// printf("| %ld | %s | \n", box.he->z[0][0], box.he->color[0][0]);
-	if (i != 0)
-	{
-		freebox(i, &box);
-	}
-	else
-		free_box(&box);
+	if (i == 0)
+		i = -4;
+	freebox(i, &box);
 	system("leaks fdf");
 	// mlx_hook(box.win_ptr, 17, 1L << 17, close, &box);
 	// mlx_hook(box.win_ptr, 2, 1L << 0, &ft_key, &box);

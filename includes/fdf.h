@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 18:08:54 by lide              #+#    #+#             */
-/*   Updated: 2022/04/29 17:15:32 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/01 18:53:07 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,9 @@ void	dr_pixel(t_data *img, int x, int y, int color);
 int	check_color(char *str, int len);
 int	check_c(char *splited);
 int	ft_key(int keycode, t_box *box);
+void	freebox(int error, t_box *box);
+void	free_box(t_box *box);
+void	free_list(t_list *list);
+void	free_split(char **splited);
 
 #endif
