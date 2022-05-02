@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 18:08:54 by lide              #+#    #+#             */
-/*   Updated: 2022/05/01 18:53:07 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/02 18:25:45 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,30 @@ typedef struct s_list
 	struct s_list	*next;
 	struct s_list	*before;
 }				t_list;
+
+typedef struct s_parcing
+{
+	int		verif;
+	int		fd;
+	int		len;
+	int		i;
+	int		y;
+	char	**splited;
+	char	*line;
+	t_list	*list;
+	t_list	*new;
+}				t_parcing;
+
+typedef struct s_copy
+{
+	int		z;
+	int		x;
+	int		len;
+	int		verif;
+	int		error;
+	char	**str;
+	long	tmp;
+}				t_copy;
 
 typedef struct s_data
 {
@@ -72,14 +96,16 @@ long	ft_atoi(char *str);
 char	*ft_strdup(char *s1);
 int		len_w(char **str);
 int		len_c(char *str);
-int	close(int keycode);
+int		close(int keycode);
 void	dr_pixel(t_data *img, int x, int y, int color);
-int	check_color(char *str, int len);
-int	check_c(char *splited);
-int	ft_key(int keycode, t_box *box);
+int		check_color(char *str, int len);
+int		check_c(char *splited);
+int		ft_key(int keycode, t_box *box);
 void	freebox(int error, t_box *box);
-void	free_box(t_box *box);
 void	free_list(t_list *list);
 void	free_split(char **splited);
+int		p_map(t_box *box, char *argv);
+int		ft_copy(t_box *box, char **splited, int y);
+int		init_data(t_box *box);
 
 #endif

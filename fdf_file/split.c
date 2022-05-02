@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 16:52:38 by lide              #+#    #+#             */
-/*   Updated: 2022/04/28 18:02:50 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/02 14:58:10 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ char	**ft_free(char **s1)
 	free(s1);
 	return (NULL);
 }
+
 char	**ft_split2(char const *s, char c, char **s1)
 {
 	int	j;
