@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 18:08:54 by lide              #+#    #+#             */
-/*   Updated: 2022/05/02 18:25:45 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/03 15:13:57 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ typedef struct s_copy
 	int		z;
 	int		x;
 	int		len;
-	int		verif;
 	int		error;
 	char	**str;
 	long	tmp;
@@ -77,13 +76,13 @@ typedef struct s_point
 
 typedef struct s_box
 {
-	// t_point	*ci;
-	// t_point	*ct;
-	// t_point	*ce;
+	t_point	*ci;
+	t_point	*ce;
 	t_height	*he;
 	void		*mlx_ptr;
 	void		*win_ptr;
 	t_data		*img;
+	int			fd;
 }				t_box;
 
 void	dr_pixel(t_data *img, int x, int y, int color);

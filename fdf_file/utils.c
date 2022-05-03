@@ -6,27 +6,25 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 08:24:04 by lide              #+#    #+#             */
-/*   Updated: 2022/05/02 14:35:34 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/03 16:06:20 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-// void	ft_swap(t_box *box)
-// {
-// 	if (box->ci->y > box->ce->y)
-// 	{
-// 		box->ct->x = box->ci->x;
-// 		box->ci->x = box->ce->x;
-// 		box->ct->y = box->ci->y;
-// 		box->ci->y = box->ce->y;
-// 	}
-// 	else
-// 	{
-// 		box->ct->x = box->ce->x;
-// 		box->ct->y = box->ce->y;
-// 	}
-// }
+void	ft_swap(t_box *box)
+{
+	long	tmp;
+	if (box->ci->y > box->ce->y)
+	{
+		tmp = box->ce->x;
+		box->ce->x = box->ci->x;
+		box->ci->x = tmp;
+		tmp = box->ce->y;
+		box->ce->y = box->ci->y;
+		box->ci->y = tmp;
+	}
+}
 
 char	*ft_strdup(char *s1)
 {

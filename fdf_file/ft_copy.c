@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 17:04:49 by lide              #+#    #+#             */
-/*   Updated: 2022/05/02 18:28:08 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/03 15:04:08 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,31 @@ int	without_color(t_copy *c, t_box *box, char **splited, int y)
 	return (0);
 }
 
+int	check_rectangle(int y, t_copy *c, t_box *box)
+{
+	static int len;
+
+	if (y == 0)
+		len = c->x;
+	else
+	{
+		if (c->x != len)
+		{
+			write(2, "the map must be rectangle\n", 26);
+			box->he->z[y] = NULL;
+			return (-3);
+		}
+	}
+	return (0);
+}
+
 int	second_malloc(t_copy *c, t_box *box, char **splited, int y)
 {
 	c->x = len_w(splited);
-	box->he->z[y] = (long *)malloc(sizeof(long) * c->x);
+	c->error = check_rectangle(y, c, box);
+	if (c->error != 0)
+		return (c->error);
+	box->he->z[y] = (long *)malloc(sizeof(long) * c->x + 1);
 	if (!box->he->z[y])
 	{
 		write (2, "Error : Malloc 1 ft_copy\n", 25);
@@ -84,6 +105,7 @@ int	second_malloc(t_copy *c, t_box *box, char **splited, int y)
 		return (-4);
 	}
 	box->he->color[y][c->x] = NULL;
+	box->he->z[y][c->x] = 2147483649;
 	return (0);
 }
 
@@ -97,10 +119,10 @@ int	ft_copy(t_box *box, char **splited, int y)
 	c.x = -1;
 	while (splited[++c.x])
 	{
-		c.verif = check_c(splited[c.x]);
-		if (c.verif == -1)
+		c.error = check_c(splited[c.x]);
+		if (c.error == -1)
 			return (check_error(&c, box, y, 0));
-		else if (c.verif == 1)
+		else if (c.error == 1)
 		{
 			c.error = with_color(&c, box, splited, y);
 			if (c.error)

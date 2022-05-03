@@ -6,13 +6,13 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:14:04 by lide              #+#    #+#             */
-/*   Updated: 2022/05/02 17:11:23 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/03 14:38:26 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-int	create_list(char *argv, t_parcing *p)
+int	create_list(t_box *box, char *argv, t_parcing *p)
 {
 	p->fd = open(argv, O_RDONLY);
 	while (p->i == 1)
@@ -37,7 +37,7 @@ int	create_list(char *argv, t_parcing *p)
 		}
 		addback(&p->list, p->new);
 	}
-	// close(p->fd);
+	box->fd = (p->fd);
 	return (0);
 }
 
@@ -95,7 +95,7 @@ int	p_map(t_box *box, char *argv)
 	p.len = 0;
 	p.list = NULL;
 	p.new = NULL;
-	p.verif = create_list(argv, &p);
+	p.verif = create_list(box, argv, &p);
 	if (p.verif != 0)
 		return (p.verif);
 	p.verif = first_malloc(box, &p);
