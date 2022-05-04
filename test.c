@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 18:10:36 by lide              #+#    #+#             */
-/*   Updated: 2022/04/28 16:53:21 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/04 17:34:38 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	close(int keycode)
 
 int	ft_key(int keycode, t_box *box)
 {
-	printf("%d\n", keycode);
+	// printf("%d\n", keycode);
 	if (keycode == KEY_W || keycode == 126)
 	{
 		for (int i = 0; i < SPEED; i++)

@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 16:30:24 by lide              #+#    #+#             */
-/*   Updated: 2022/04/30 17:05:07 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/04 17:45:07 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	check_c(char *splited)
 	int	i;
 
 	i = -1;
+	if (splited[1] && splited[0] == '-')
+		i++;
 	while (splited[++i])
 	{
 		if (splited[i] < '0' || splited[i] > '9')
