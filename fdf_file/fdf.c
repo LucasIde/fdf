@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 16:44:27 by lide              #+#    #+#             */
-/*   Updated: 2022/05/04 18:38:05 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/05 19:57:12 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	test_map(t_box *box)
 	int	j_m;
 	int	x;
 	int	y;
-	int len;
 
 	x = 0;
 	y = 0;
@@ -44,10 +43,10 @@ void	test_map(t_box *box)
 		x++;
 	while (box->he->z[y])
 		y++;
-	len = 10;
 	i = -1;
 	x_m = 0;
 	j_m = 0;
+	box->ci->color = COLOURS;
 	while (++i < y)
 	{
 		// printf("|i %d-y %d\n",i,y);
@@ -58,19 +57,62 @@ void	test_map(t_box *box)
 			// printf("|j %d-x %d\n",j,x);
 			if (j < x && box->he->z[i][j + 1] != 2147483649)
 			{
-				box->ci->y = ((i + y_m - box->he->z[i][j]) * len) + 400;
-				box->ce->y = ((i + 1 + y_m - box->he->z[i][j + 1]) * len) + 400;
-				box->ci->x = ((j + j_m) * len) + 400 - (x_m * len);
-				box->ce->x = ((j + 2 + j_m) * len) + 400 - (x_m * len);
+				box->ci->y = ((i + y_m - box->he->z[i][j] + box->move_y) * box->len) + 400;
+				box->ce->y = ((i + 1 + y_m - box->he->z[i][j + 1] + box->move_y) * box->len) + 400;
+				box->ci->x = ((j + j_m + box->move_x) * box->len) + 400 - (x_m * box->len);
+				box->ce->x = ((j + 2 + j_m + box->move_x) * box->len) + 400 - (x_m * box->len);
 				// printf(" x = |%d , %d| |%d , %d|\n", box->ci->x, box->ci->y, box->ce->x, box->ce->y);
 				dr_line(box);
 			}
 			if (i < y && box->he->z[i + 1])
 			{
-				box->ci->y = ((i + y_m - box->he->z[i][j]) * len) + 400;
-				box->ce->y = ((i + 1 + y_m - box->he->z[i + 1][j]) * len) + 400;
-				box->ci->x = ((j + j_m) * len) + 400 - (x_m * len);
-				box->ce->x = ((j - 2 + j_m) * len) + 400 - (x_m * len);
+				box->ci->y = ((i + y_m - box->he->z[i][j] + box->move_y) * box->len) + 400;
+				box->ce->y = ((i + 1 + y_m - box->he->z[i + 1][j] + box->move_y) * box->len) + 400;
+				box->ci->x = ((j + j_m + box->move_x) * box->len) + 400 - (x_m * box->len);
+				box->ce->x = ((j - 2 + j_m + box->move_x) * box->len) + 400 - (x_m * box->len);
+				dr_line(box);
+				// printf(" y = |%d , %d|\n", box->ci->y, box->ce->y);
+			}
+			j_m++;
+			y_m++;
+		}
+		j_m = 0;
+		x_m +=2;
+	}
+	mlx_put_image_to_window(box->mlx_ptr, box->win_ptr, box->img->img, 0, 0);
+	x = 0;
+	y = 0;
+	while (box->he->z[0][x] != 2147483649)
+		x++;
+	while (box->he->z[y])
+		y++;
+	i = -1;
+	x_m = 0;
+	j_m = 0;
+	box->ci->color = 0x0;
+	while (++i < y)
+	{
+		// printf("|i %d-y %d\n",i,y);
+		j = -1;
+		y_m = 0;
+		while (++j < x)
+		{
+			// printf("|j %d-x %d\n",j,x);
+			if (j < x && box->he->z[i][j + 1] != 2147483649)
+			{
+				box->ci->y = ((i + y_m - box->he->z[i][j] + box->move_y) * box->len) + 400;
+				box->ce->y = ((i + 1 + y_m - box->he->z[i][j + 1] + box->move_y) * box->len) + 400;
+				box->ci->x = ((j + j_m + box->move_x) * box->len) + 400 - (x_m * box->len);
+				box->ce->x = ((j + 2 + j_m + box->move_x) * box->len) + 400 - (x_m * box->len);
+				// printf(" x = |%d , %d| |%d , %d|\n", box->ci->x, box->ci->y, box->ce->x, box->ce->y);
+				dr_line(box);
+			}
+			if (i < y && box->he->z[i + 1])
+			{
+				box->ci->y = ((i + y_m - box->he->z[i][j] + box->move_y) * box->len) + 400;
+				box->ce->y = ((i + 1 + y_m - box->he->z[i + 1][j] + box->move_y) * box->len) + 400;
+				box->ci->x = ((j + j_m + box->move_x) * box->len) + 400 - (x_m * box->len);
+				box->ce->x = ((j - 2 + j_m + box->move_x) * box->len) + 400 - (x_m * box->len);
 				dr_line(box);
 				// printf(" y = |%d , %d|\n", box->ci->y, box->ce->y);
 			}
@@ -88,7 +130,7 @@ void	test_map(t_box *box)
 // 	int	j;
 // 	int	x;
 // 	int	y;
-// 	int len;
+// 	int box->len;
 
 // 	x = 0;
 // 	y = 0;
@@ -96,7 +138,7 @@ void	test_map(t_box *box)
 // 		x++;
 // 	while (box->he->z[y])
 // 		y++;
-// 	len = 100;
+// 	box->len = 100;
 // 	i = -1;
 
 // 	while (++i <= y)
@@ -106,18 +148,18 @@ void	test_map(t_box *box)
 // 		{
 // 			if (j < x)
 // 			{
-// 				box->ci->y = (i * len) + 400;
+// 				box->ci->y = (i * box->len) + 400;
 // 				box->ce->y = box->ci->y;
-// 				box->ci->x = (j * len) + 400;
-// 				box->ce->x = ((j + 1) * len) + 400;
+// 				box->ci->x = (j * box->len) + 400;
+// 				box->ce->x = ((j + 1) * box->len) + 400;
 // 				// printf(" x = |%d , %d|\n", box->ci->x, box->ce->x);
 // 				dr_line(box);
 // 			}
 // 			if (i < y)
 // 			{
-// 				box->ci->y = (i * len) + 400;
-// 				box->ce->y = ((i + 1) * len) + 400;
-// 				box->ci->x = (j * len) + 400;
+// 				box->ci->y = (i * box->len) + 400;
+// 				box->ce->y = ((i + 1) * box->len) + 400;
+// 				box->ci->x = (j * box->len) + 400;
 // 				box->ce->x = box->ci->x;
 // 				dr_line(box);
 // 				// printf(" y = |%d , %d|\n", box->ci->y, box->ce->y);
@@ -149,13 +191,17 @@ int	main(int argc, char **argv)
 	// freebox(i, &box);
 	// system("leaks fdf");
 	mlx_hook(box.win_ptr, 17, 1L << 17, close, &box);
-	mlx_hook(box.win_ptr, 2, 1L << 0, &ft_key, &box);
+	mlx_hook(box.win_ptr, 2, 1L << 0, &key_press, &box);
+	mlx_hook(box.win_ptr, 3, 1L << 0, &key_release, &box);
+	mlx_hook(box.win_ptr, 4, 1L << 2, &scroll, &box);
+	mlx_loop_hook(box.mlx_ptr, &key_move, &box);
 	mlx_loop(box.mlx_ptr);
 	return (0);
 }
 
 
-//turc a check :
+//truc a check :
 // segfault si .txt vide
 //chiffre a virgule (check_c et atoi)
 //accepter que les .fdf
+//check error init data

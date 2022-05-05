@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 07:52:24 by lide              #+#    #+#             */
-/*   Updated: 2022/05/04 16:32:47 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/05 18:21:34 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	case1(t_box *box, int dx, int dy)
 	int	p;
 
 	p = 2 * (dy - dx);
-	if (box->ci->y < 1081 && box->ci->x < 1921
+	if (box->ci->y < 1080 && box->ci->x < 1920
 		&& box->ci->x > -1 && box->ci->y > -1)
-		dr_pixel(box->img, box->ci->x, box->ci->y, COLOURS);
+		dr_pixel(box->img, box->ci->x, box->ci->y, box->ci->color);
 	while (box->ci->x <= box->ce->x && box->ci->y <= box->ce->y)
 	{
 		if (p < 0)
@@ -34,11 +34,10 @@ void	case1(t_box *box, int dx, int dy)
 			box->ci->y++;
 		}
 		if (box->ci->x <= box->ce->x && box->ci->y <= box->ce->y
-			&& box->ci->y < 1081 && box->ci->x < 1921
+			&& box->ci->y < 1080 && box->ci->x < 1920
 			&& box->ci->x > -1 && box->ci->y > -1)
-			dr_pixel(box->img, box->ci->x, box->ci->y, COLOURS);
+			dr_pixel(box->img, box->ci->x, box->ci->y, box->ci->color);
 	}
-	mlx_put_image_to_window(box->mlx_ptr, box->win_ptr, box->img->img, 0, 0);
 }
 
 void	case2(t_box *box, int dx, int dy)
@@ -46,9 +45,9 @@ void	case2(t_box *box, int dx, int dy)
 	int	p;
 
 	p = 2 * (dx - dy);
-	if (box->ci->y < 1081 && box->ci->x < 1921
+	if (box->ci->y < 1080 && box->ci->x < 1920
 		&& box->ci->x > -1 && box->ci->y > -1)
-		dr_pixel(box->img, box->ci->x, box->ci->y, COLOURS);
+		dr_pixel(box->img, box->ci->x, box->ci->y, box->ci->color);
 	while (box->ci->x <= box->ce->x && box->ci->y <= box->ce->y)
 	{
 		if (p <= 0)
@@ -63,11 +62,10 @@ void	case2(t_box *box, int dx, int dy)
 			box->ci->y++;
 		}
 		if (box->ci->x <= box->ce->x && box->ci->y <= box->ce->y
-			&& box->ci->y < 1081 && box->ci->x < 1921
+			&& box->ci->y < 1080 && box->ci->x < 1920
 			&& box->ci->x > -1 && box->ci->y > -1)
-			dr_pixel(box->img, box->ci->x, box->ci->y, COLOURS);
+			dr_pixel(box->img, box->ci->x, box->ci->y, box->ci->color);
 	}
-	mlx_put_image_to_window(box->mlx_ptr, box->win_ptr, box->img->img, 0, 0);
 }
 
 void	case3(t_box *box, int dx, int dy)
@@ -75,9 +73,9 @@ void	case3(t_box *box, int dx, int dy)
 	int	p;
 
 	p = 2 * (dy - dx);
-	if (box->ci->y < 1081 && box->ci->x < 1921
+	if (box->ci->y < 1080 && box->ci->x < 1920
 		&& box->ci->x > -1 && box->ci->y > -1)
-		dr_pixel(box->img, box->ci->x, box->ci->y, COLOURS);
+		dr_pixel(box->img, box->ci->x, box->ci->y, box->ci->color);
 	while (box->ce->x <= box->ci->x && box->ce->y >= box->ci->y)
 	{
 		if (p <= 0)
@@ -92,11 +90,10 @@ void	case3(t_box *box, int dx, int dy)
 			box->ci->y++;
 		}
 		if (box->ce->x <= box->ci->x && box->ce->y >= box->ci->y
-			&& box->ci->y < 1081 && box->ci->x < 1921
+			&& box->ci->y < 1080 && box->ci->x < 1920
 			&& box->ci->x > -1 && box->ci->y > -1)
-			dr_pixel(box->img, box->ci->x, box->ci->y, COLOURS);
+			dr_pixel(box->img, box->ci->x, box->ci->y, box->ci->color);
 	}
-	mlx_put_image_to_window(box->mlx_ptr, box->win_ptr, box->img->img, 0, 0);
 }
 
 void	case4(t_box *box, int dx, int dy)
@@ -104,9 +101,9 @@ void	case4(t_box *box, int dx, int dy)
 	int	p;
 
 	p = 2 * (dx - dy);
-	if (box->ci->y < 1081 && box->ci->x < 1921
+	if (box->ci->y < 1080 && box->ci->x < 1920
 		&& box->ci->x > -1 && box->ci->y > -1)
-		dr_pixel(box->img, box->ci->x, box->ci->y, COLOURS);
+		dr_pixel(box->img, box->ci->x, box->ci->y, box->ci->color);
 	while (box->ce->x <= box->ci->x && box->ce->y >= box->ci->y)
 	{
 		if (p < 0)
@@ -121,11 +118,10 @@ void	case4(t_box *box, int dx, int dy)
 			box->ci->y++;
 		}
 		if (box->ce->x <= box->ci->x && box->ce->y >= box->ci->y
-			&& box->ci->y < 1081 && box->ci->x < 1921
+			&& box->ci->y < 1080 && box->ci->x < 1920
 			&& box->ci->x > -1 && box->ci->y > -1)
-			dr_pixel(box->img, box->ci->x, box->ci->y, COLOURS);
+			dr_pixel(box->img, box->ci->x, box->ci->y, box->ci->color);
 	}
-	mlx_put_image_to_window(box->mlx_ptr, box->win_ptr, box->img->img, 0, 0);
 }
 
 void	dr_line(t_box *box)

@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 18:08:54 by lide              #+#    #+#             */
-/*   Updated: 2022/05/03 15:13:57 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/05 19:26:39 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,15 @@
 # include <math.h>
 # include <stdio.h>
 # define KEY_W 13
-# define SPEED 150
-# define COLOURS 16711680
+# define KEY_A 0
+# define KEY_S 1
+# define KEY_D 2
+# define KEY_UP 126
+# define KEY_LEFT 123
+# define KEY_DOWN 125
+# define KEY_RIGHT 124
+# define KEY_ESC 53
+# define COLOURS 0xE91E63
 
 typedef struct s_list
 {
@@ -29,6 +36,19 @@ typedef struct s_list
 	struct s_list	*next;
 	struct s_list	*before;
 }				t_list;
+
+typedef struct s_key_set
+{
+	int	w;
+	int	a;
+	int	s;
+	int	d;
+	int	up;
+	int	left;
+	int	down;
+	int	right;
+	int	esc;
+}				t_key_set;
 
 typedef struct s_parcing
 {
@@ -72,17 +92,22 @@ typedef struct s_point
 {
 	int	x;
 	int	y;
+	unsigned int	color;
 }				t_point;
 
 typedef struct s_box
 {
-	t_point	*ci;
-	t_point	*ce;
+	t_point		*ci;
+	t_point		*ce;
 	t_height	*he;
+	t_key_set	*key;
+	t_data		*img;
 	void		*mlx_ptr;
 	void		*win_ptr;
-	t_data		*img;
+	int			len;
 	int			fd;
+	int			move_y;
+	int			move_x;
 }				t_box;
 
 void	dr_pixel(t_data *img, int x, int y, int color);
@@ -99,12 +124,16 @@ int		close(int keycode);
 void	dr_pixel(t_data *img, int x, int y, int color);
 int		check_color(char *str, int len);
 int		check_c(char *splited);
-int		ft_key(int keycode, t_box *box);
+int		key_move(t_box *box);
 void	freebox(int error, t_box *box);
 void	free_list(t_list *list);
 void	free_split(char **splited);
 int		p_map(t_box *box, char *argv);
 int		ft_copy(t_box *box, char **splited, int y);
 int		init_data(t_box *box);
+int		key_press(int keycode, t_box *box);
+int		key_release(int keycode, t_box *box);
+int		scroll(int mouse, int x, int y, t_box *box);
+void	test_map(t_box *box);
 
 #endif
