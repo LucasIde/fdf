@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 17:04:49 by lide              #+#    #+#             */
-/*   Updated: 2022/05/03 15:04:08 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/09 17:15:43 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	check_error(t_copy *c, t_box *box, int y, int error)
 {
 	if (error == 0)
-		write(2, "Error : a comma is missing before the colors\n", 45);
+		write(2, "Error : wrong value in .fdf\n", 28);
 	else if (error == 1)
 		write(2, "Error : value superior to an int\n", 33);
 	else if (error == 2)
@@ -70,7 +70,7 @@ int	without_color(t_copy *c, t_box *box, char **splited, int y)
 
 int	check_rectangle(int y, t_copy *c, t_box *box)
 {
-	static int len;
+	static int	len;
 
 	if (y == 0)
 		len = c->x;

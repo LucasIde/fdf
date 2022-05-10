@@ -279,3 +279,106 @@
 // 	}
 // 	return (0);
 // }
+
+// void	dr_map(t_box *box)
+// {
+// 	int y_m;
+// 	int x_m;
+// 	int	i;
+// 	int	j;
+// 	int	j_m;
+// 	int	x;
+// 	int	y;
+// 	int	height;
+
+// 	x = 0;
+// 	y = 0;
+// 	height = 0;
+// 	while (box->he->z[0][x] != 2147483649)
+// 		x++;
+// 	while (box->he->z[y])
+// 		y++;
+// 	i = -1;
+// 	x_m = 0;
+// 	j_m = 0;
+// 	box->ci->color = COLOURS;
+// 	while (++i < y)
+// 	{
+// 		// printf("|i %d-y %d\n",i,y);
+// 		j = -1;
+// 		y_m = 0;
+// 		while (++j < x)
+// 		{
+// 			// printf("|j %d-x %d\n",j,x);
+// 			if (j < x && box->he->z[i][j + 1] != 2147483649)
+// 			{
+// 				box->ci->y = ((i + y_m - box->he->z[i][j] + box->move_y) * box->len) + 400;
+// 				box->ce->y = ((i + 1 + y_m - box->he->z[i][j + 1] + box->move_y) * box->len) + 400;
+// 				box->ci->x = ((j + j_m + box->move_x) * box->len) + 400 - (x_m * box->len);
+// 				box->ce->x = ((j + 2 + j_m + box->move_x) * box->len) + 400 - (x_m * box->len);
+// 				// printf(" x = |%d , %d| |%d , %d|\n", box->ci->x, box->ci->y, box->ce->x, box->ce->y);
+// 				dr_line(box);
+// 			}
+// 			if (i < y && box->he->z[i + 1])
+// 			{
+// 				box->ci->y = ((i + y_m - box->he->z[i][j] + box->move_y) * box->len) + 400;
+// 				box->ce->y = ((i + 1 + y_m - box->he->z[i + 1][j] + box->move_y) * box->len) + 400;
+// 				box->ci->x = ((j + j_m + box->move_x) * box->len) + 400 - (x_m * box->len);
+// 				box->ce->x = ((j - 2 + j_m + box->move_x) * box->len) + 400 - (x_m * box->len);
+// 				dr_line(box);
+// 				// printf(" y = |%d , %d|\n", box->ci->y, box->ce->y);
+// 			}
+// 			j_m++;
+// 			y_m++;
+// 		}
+// 		j_m = 0;
+// 		x_m +=2;
+// 	}
+// 	mlx_put_image_to_window(box->mlx_ptr, box->win_ptr, box->img->img, 0, 0);
+// 	x = 0;
+// 	y = 0;
+// 	while (box->he->z[0][x] != 2147483649)
+// 		x++;
+// 	while (box->he->z[y])
+// 		y++;
+// 	i = -1;
+// 	x_m = 0;
+// 	j_m = 0;
+// 	box->ci->color = 0x0;
+// 	while (++i < y)
+// 	{
+// 		// printf("|i %d-y %d\n",i,y);
+// 		j = -1;
+// 		y_m = 0;
+// 		while (++j < x)
+// 		{
+// 			// printf("|j %d-x %d\n",j,x);
+// 			if (j < x && box->he->z[i][j + 1] != 2147483649)
+// 			{
+// 				if (box->he->z[i][j] != 0)
+// 					height = box->height;
+// 				else
+// 					height = 0;
+// 				box->ci->y = ((i + y_m - box->he->z[i][j] + box->move_y) * box->len) + 400;
+// 				box->ce->y = ((i + 1 + y_m - box->he->z[i][j + 1] + box->move_y) * box->len) + 400;
+// 				box->ci->x = ((j + j_m + box->move_x) * box->len) + 400 - (x_m * box->len);
+// 				box->ce->x = ((j + 2 + j_m + box->move_x) * box->len) + 400 - (x_m * box->len);
+// 				// printf(" x = |%d , %d| |%d , %d|\n", box->ci->x, box->ci->y, box->ce->x, box->ce->y);
+// 				dr_line(box);
+// 			}
+// 			if (i < y && box->he->z[i + 1])
+// 			{
+// 				box->ci->y = ((i + y_m - box->he->z[i][j] + box->move_y) * box->len) + 400;
+// 				box->ce->y = ((i + 1 + y_m - box->he->z[i + 1][j] + box->move_y) * box->len) + 400;
+// 				box->ci->x = ((j + j_m + box->move_x) * box->len) + 400 - (x_m * box->len);
+// 				box->ce->x = ((j - 2 + j_m + box->move_x) * box->len) + 400 - (x_m * box->len);
+// 				dr_line(box);
+// 				// printf(" y = |%d , %d|\n", box->ci->y, box->ce->y);
+// 			}
+// 			j_m++;
+// 			y_m++;
+// 		}
+// 		j_m = 0;
+// 		x_m +=2;
+// 	}
+// }

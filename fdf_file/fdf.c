@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 16:44:27 by lide              #+#    #+#             */
-/*   Updated: 2022/05/05 19:57:12 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/09 17:17:10 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	print(t_box *box)
 {
-	int y;
-	int x;
+	int	y;
+	int	x;
 
 	y = -1;
 	while (box->he->z[++y])
@@ -24,103 +24,6 @@ void	print(t_box *box)
 		while (box->he->z[y][++x] != 2147483649)
 			printf("-| %ld , %s |-\n", box->he->z[y][x], box->he->color[y][x]);
 		printf("\n");
-	}
-}
-
-void	test_map(t_box *box)
-{
-	int y_m;
-	int x_m;
-	int	i;
-	int	j;
-	int	j_m;
-	int	x;
-	int	y;
-
-	x = 0;
-	y = 0;
-	while (box->he->z[0][x] != 2147483649)
-		x++;
-	while (box->he->z[y])
-		y++;
-	i = -1;
-	x_m = 0;
-	j_m = 0;
-	box->ci->color = COLOURS;
-	while (++i < y)
-	{
-		// printf("|i %d-y %d\n",i,y);
-		j = -1;
-		y_m = 0;
-		while (++j < x)
-		{
-			// printf("|j %d-x %d\n",j,x);
-			if (j < x && box->he->z[i][j + 1] != 2147483649)
-			{
-				box->ci->y = ((i + y_m - box->he->z[i][j] + box->move_y) * box->len) + 400;
-				box->ce->y = ((i + 1 + y_m - box->he->z[i][j + 1] + box->move_y) * box->len) + 400;
-				box->ci->x = ((j + j_m + box->move_x) * box->len) + 400 - (x_m * box->len);
-				box->ce->x = ((j + 2 + j_m + box->move_x) * box->len) + 400 - (x_m * box->len);
-				// printf(" x = |%d , %d| |%d , %d|\n", box->ci->x, box->ci->y, box->ce->x, box->ce->y);
-				dr_line(box);
-			}
-			if (i < y && box->he->z[i + 1])
-			{
-				box->ci->y = ((i + y_m - box->he->z[i][j] + box->move_y) * box->len) + 400;
-				box->ce->y = ((i + 1 + y_m - box->he->z[i + 1][j] + box->move_y) * box->len) + 400;
-				box->ci->x = ((j + j_m + box->move_x) * box->len) + 400 - (x_m * box->len);
-				box->ce->x = ((j - 2 + j_m + box->move_x) * box->len) + 400 - (x_m * box->len);
-				dr_line(box);
-				// printf(" y = |%d , %d|\n", box->ci->y, box->ce->y);
-			}
-			j_m++;
-			y_m++;
-		}
-		j_m = 0;
-		x_m +=2;
-	}
-	mlx_put_image_to_window(box->mlx_ptr, box->win_ptr, box->img->img, 0, 0);
-	x = 0;
-	y = 0;
-	while (box->he->z[0][x] != 2147483649)
-		x++;
-	while (box->he->z[y])
-		y++;
-	i = -1;
-	x_m = 0;
-	j_m = 0;
-	box->ci->color = 0x0;
-	while (++i < y)
-	{
-		// printf("|i %d-y %d\n",i,y);
-		j = -1;
-		y_m = 0;
-		while (++j < x)
-		{
-			// printf("|j %d-x %d\n",j,x);
-			if (j < x && box->he->z[i][j + 1] != 2147483649)
-			{
-				box->ci->y = ((i + y_m - box->he->z[i][j] + box->move_y) * box->len) + 400;
-				box->ce->y = ((i + 1 + y_m - box->he->z[i][j + 1] + box->move_y) * box->len) + 400;
-				box->ci->x = ((j + j_m + box->move_x) * box->len) + 400 - (x_m * box->len);
-				box->ce->x = ((j + 2 + j_m + box->move_x) * box->len) + 400 - (x_m * box->len);
-				// printf(" x = |%d , %d| |%d , %d|\n", box->ci->x, box->ci->y, box->ce->x, box->ce->y);
-				dr_line(box);
-			}
-			if (i < y && box->he->z[i + 1])
-			{
-				box->ci->y = ((i + y_m - box->he->z[i][j] + box->move_y) * box->len) + 400;
-				box->ce->y = ((i + 1 + y_m - box->he->z[i + 1][j] + box->move_y) * box->len) + 400;
-				box->ci->x = ((j + j_m + box->move_x) * box->len) + 400 - (x_m * box->len);
-				box->ce->x = ((j - 2 + j_m + box->move_x) * box->len) + 400 - (x_m * box->len);
-				dr_line(box);
-				// printf(" y = |%d , %d|\n", box->ci->y, box->ce->y);
-			}
-			j_m++;
-			y_m++;
-		}
-		j_m = 0;
-		x_m +=2;
 	}
 }
 
@@ -168,6 +71,20 @@ void	test_map(t_box *box)
 // 	}
 // }
 
+int	check_fdf(char *argv)
+{
+	int len;
+
+	len = len_c(argv);
+	if (argv[len - 1] != 'f' || argv[len - 2] != 'd'
+		|| argv[len - 3] != 'f' || argv[len - 4] != '.')
+	{
+		write(2, "Error : only .fdf file is accepted\n", 35);
+		return (1);
+	}
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_box	box;
@@ -176,16 +93,14 @@ int	main(int argc, char **argv)
 	i = 0;
 	if (argc != 2)
 		return (0);
+	if (check_fdf(argv[1]))
+		return (0);
 	init_data(&box);
-	// box.he = malloc(sizeof(t_height));
-	// if (!box.he)
-	// 	return (1);
-	// box.he->color = NULL;
-	// box.he->z = NULL;
 	i = p_map(&box, argv[1]);
-	// printf("yo\n");
+	if (i == -4 || i == -1)
+		return (0);
 	// print(&box);
-	test_map(&box);
+	dr_map(&box);
 	if (i == 0)
 		i = -4;
 	// freebox(i, &box);
@@ -201,7 +116,6 @@ int	main(int argc, char **argv)
 
 
 //truc a check :
-// segfault si .txt vide
-//chiffre a virgule (check_c et atoi)
-//accepter que les .fdf
+//ajouter le close fd a close
 //check error init data
+//proteger mlx (init ...)

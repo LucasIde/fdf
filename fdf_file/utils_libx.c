@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 16:27:36 by lide              #+#    #+#             */
-/*   Updated: 2022/05/05 19:37:26 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/09 20:56:44 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,6 @@ int	close(int keycode)
 	return (0);
 }
 
-// void	win_reset(t_box *box)
-// {
-// 	int y;
-
-// 	y = 0;
-// 	box->ci->x = 0;
-// 	box->ce->x = 1920;
-// 	while (y < 1081)
-// 	{
-// 		box->ci->y = y;
-// 		box->ce->y = y;
-// 		y++;
-// 		dr_line(box);
-// 	}
-// }
-
 int	scroll(int mouse, int x, int y, t_box *box)
 {
 	(void)x;
@@ -42,7 +26,7 @@ int	scroll(int mouse, int x, int y, t_box *box)
 	(void)box;
 	if (mouse == 4)
 		box->len += 1;
-	else if (mouse == 5 /*&& box->len > 0*/)
+	else if (mouse == 5 && box->len > 1)
 		box->len -= 1;
 	return (0);
 }
@@ -65,6 +49,10 @@ int	key_release(int keycode, t_box *box)
 		box->key->s = 0;
 	else if (keycode == KEY_D)
 		box->key->d = 0;
+	else if (keycode == KEY_Q)
+		box->key->q = 0;
+	else if (keycode == KEY_E)
+		box->key->e = 0;
 	else if (keycode == KEY_ESC)
 		box->key->esc = 0;
 	return (0);
@@ -88,6 +76,10 @@ int	key_press(int keycode, t_box *box)
 		box->key->s = 1;
 	else if (keycode == KEY_D)
 		box->key->d = 1;
+	else if (keycode == KEY_Q)
+		box->key->q = 1;
+	else if (keycode == KEY_E)
+		box->key->e = 1;
 	else if (keycode == KEY_ESC)
 		box->key->esc = 1;
 	return (0);
@@ -103,13 +95,16 @@ int	key_move(t_box *box)
 		box->move_x--;
 	if (box->key->right == 1)
 		box->move_x++;
+	if (box->key->q == 1)
+		box->height++;
+	if (box->key->e == 1)
+		box->height--;
 	if (box->key->esc == 1)
 	{
 		free(box->img);
 		close(0);
 	}
-	// if (box->key->up == 1 || box->key->down == 1 || box->key->left == 1 || box->key->right == 1)
-	test_map(box);
+	dr_map(box);
 	return (0);
 }
 
@@ -127,6 +122,8 @@ void	set_value_key(t_box *box)
 	box->key->a = 0;
 	box->key->s = 0;
 	box->key->d = 0;
+	box->key->q = 0;
+	box->key->e = 0;
 	box->key->up = 0;
 	box->key->left = 0;
 	box->key->down = 0;
@@ -163,6 +160,8 @@ int	init_data(t_box *box)
 	box->move_x = 0;
 	box->move_y = 0;
 	box->len = 10;
+	box->height = 1;
+	box->rotate = 1;
 	set_value_key(box);
 	return (0);
 }

@@ -6,24 +6,24 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 16:30:24 by lide              #+#    #+#             */
-/*   Updated: 2022/05/05 15:24:30 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/09 16:35:35 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-int	check_c(char *splited)
+int	check_c(char *split)
 {
 	int	i;
 
 	i = -1;
-	if (splited[1] && splited[0] == '-')
+	if (split[1] && split[0] == '-')
 		i++;
-	while (splited[++i])
+	while (split[++i])
 	{
-		if (splited[i] < '0' || splited[i] > '9')
+		if (split[i] < '0' || split[i] > '9')
 		{
-			if (splited[i] == ',')
+			if (split[i] == ',' && split[i + 1] == '0' && split[i + 2] == 'x')
 				return (1);
 			else
 				return (-1);
