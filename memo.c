@@ -382,3 +382,57 @@
 // 		x_m +=2;
 // 	}
 // }
+
+
+
+		// // traveled = dif / traveled;
+		// // printf("dif == %u\n", dif);
+		// // printf("traveled == %u\n", traveled);
+		// traveled = (dif - find_dif(box));
+		// box->color = box->ci->color;
+		// if (c->t_move != 0)
+		// 	box->color += ((unsigned int)(c->t_move * (double)traveled)) * 16777216;
+		// if (c->r_move != 0)
+		// 	box->color += ((unsigned int)(c->r_move * (double)traveled)) * 65536;
+		// if (c->g_move != 0)
+		// {
+		// 	box->color += ((unsigned int)(c->g_move * (double)traveled)) * 256;
+		// 	// printf("%u\n", (unsigned int)(c->g_move * traveled) * 256);
+		// }
+		// if (c->g_move != 0)
+		// 	box->color += ((unsigned int)(c->g_move * (double)traveled));
+		// // printf("color %u color ce = %u\n", box->color, box->ce->color);
+		// if (box->color > box->ce->color)
+		// 	box->color = box->ce->color;
+		// // if (traveled > c->t_move)
+		// // {
+		// // 	box->ci->color += 16777216;
+		// // 	c->t_move += c->t_move;
+		// // 	// printf("c_tmove == %u\n", c->t_move);
+		// // }
+		// // if (traveled > c->r_move)
+		// // {
+		// // 	box->ci->color += 65536;
+		// // 	c->r_move += c->r_move;
+		// // }
+		// // if (traveled > c->g_move)
+		// // {
+		// // 	box->ci->color += 256;
+		// // 	c->g_move += c->g_move;
+		// // }
+		// // if (traveled > c->b_move)
+		// // {
+		// // 	box->ci->color++;
+		// // 	c->b_move += c->b_move;
+		// // }
+		// // printf("%u\n", box->ci->color);
+		// // c->t_add = traveled / c->t_move;
+		// // c->r_add = traveled / c->r_move;
+		// // c->g_add = traveled / c->g_move;
+		// // c->b_add = traveled / c->b_move;
+		// // if (c->t_add != 0)
+		// // if (c->r_add != 0)
+		// // box->ci->color += c->r_add * pow(16, 4);
+		// // if (c->g_add != 0)
+		// // box->ci->color += c->g_add * pow(16, 2);
+		// // box->ci->color += c->b_add;

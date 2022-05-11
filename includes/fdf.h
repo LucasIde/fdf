@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 18:08:54 by lide              #+#    #+#             */
-/*   Updated: 2022/05/10 04:18:10 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/11 04:04:34 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,24 @@
 # define KEY_D 2
 # define KEY_Q 12
 # define KEY_E 14
+# define KEY_R 15
+# define KEY_0 82
+# define KEY_1 83
+# define KEY_2 84
+# define KEY_MINUS 78
+# define KEY_PLUS 69
 # define KEY_UP 126
 # define KEY_LEFT 123
 # define KEY_DOWN 125
 # define KEY_RIGHT 124
 # define KEY_ESC 53
-# define COLOURS 0xE91E63
+# define RED 0xff0000
+# define ORANGE 0xffa500
+# define YELLOW 0xffff00
+# define GREEN 0x00D100
+# define BLUE 0x0096FF
+# define INDIGO 0x6500B0
+# define VIOLET 0x8f00ff
 
 typedef struct s_list
 {
@@ -47,11 +59,17 @@ typedef struct s_key_set
 	int	d;
 	int	q;
 	int	e;
+	int	r;
+	int	zero;
+	int	one;
+	int	two;
 	int	up;
 	int	left;
 	int	down;
 	int	right;
 	int	esc;
+	int	minus;
+	int	plus;
 }				t_key_set;
 
 typedef struct s_parcing
@@ -100,10 +118,7 @@ typedef struct s_color
 	float	r_move;
 	float	g_move;
 	float	b_move;
-	int				t_add;
-	int				r_add;
-	int				g_add;
-	int				b_add;
+	int	event;
 }				t_color;
 
 typedef struct s_data
@@ -135,6 +150,7 @@ typedef struct s_box
 	t_height	*he;
 	t_key_set	*key;
 	t_data		*img;
+	unsigned int *rainbow;
 	void		*mlx_ptr;
 	void		*win_ptr;
 	int			len;
@@ -143,11 +159,13 @@ typedef struct s_box
 	int			move_x;
 	int			height;
 	int			rotate;
+	int			speed;
 	unsigned int	color;
+	int			color_set;
 }				t_box;
 
 void			dr_pixel(t_data *img, int x, int y, int color);
-void			dr_line(t_box *box);
+void			dr_line(t_box *box, int end);
 void			ft_swap(t_box *box);
 void			addback(t_list **list, t_list *new);
 void			list_next(t_list **list);

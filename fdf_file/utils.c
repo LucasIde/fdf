@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 08:24:04 by lide              #+#    #+#             */
-/*   Updated: 2022/05/10 02:17:24 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/10 15:59:52 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ void	ft_swap(t_box *box)
 		tmp = box->ce->y;
 		box->ce->y = box->ci->y;
 		box->ci->y = tmp;
+		tmp = box->ce->color;
+		box->ce->color = box->ci->color;
+		box->ci->color = tmp;
 	}
 }
 

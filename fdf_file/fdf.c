@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 16:44:27 by lide              #+#    #+#             */
-/*   Updated: 2022/05/09 17:17:10 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/11 04:05:32 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,3 +119,4 @@ int	main(int argc, char **argv)
 //ajouter le close fd a close
 //check error init data
 //proteger mlx (init ...)
+//free rainbow

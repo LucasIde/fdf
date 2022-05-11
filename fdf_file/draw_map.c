@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 13:45:33 by lide              #+#    #+#             */
-/*   Updated: 2022/05/09 23:15:58 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/11 03:48:23 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	angle(t_box *box)
 	printf("%d\n", box->ce->y);
 }
 
-void	line_x(t_box *box, t_dr_map *m)
+void	line_x(t_box *box, t_dr_map *m, int event)
 {
 	box->ci->y = m->y + m->iso_y - (box->he->z[m->y][m->x] * m->height);
 	box->ci->y += box->move_y;
@@ -43,10 +43,10 @@ void	line_x(t_box *box, t_dr_map *m)
 	box->ce->x += box->move_x;
 	box->ce->x = (box->ce->x * box->len) + (970 - (m->len_x / 2) * box->len);
 	// angle(box);
-	dr_line(box);
+	dr_line(box, event);
 }
 
-void	line_y(t_box *box, t_dr_map *m)
+void	line_y(t_box *box, t_dr_map *m, int event)
 {
 	box->ci->y = m->y + m->iso_y - (box->he->z[m->y][m->x] * m->height);
 	box->ci->y += box->move_y;
@@ -61,7 +61,7 @@ void	line_y(t_box *box, t_dr_map *m)
 	box->ce->x += box->move_x;
 	box->ce->x = (box->ce->x * box->len) + (970 - (m->len_x / 2) * box->len);
 	// angle(box);
-	dr_line(box);
+	dr_line(box, event);
 }
 
 int	add_height(t_box *box, int y, int x)
@@ -85,14 +85,51 @@ void	init_dr_map(t_box *box, t_dr_map *m)
 	m->i = 0;
 }
 
+unsigned int	rainbow_road(unsigned int *template, int size)
+{
+	static int i = -1;
+
+	i++;
+	// printf("%d\n", i);
+	if (i > size)
+		i = -1;
+	return (template[i]);
+}
+
 unsigned int	init_color(t_box *box, int y, int x, int event)
 {
 	if (event == 0)
 	{
-		if (!*box->he->color[y][x])
-			return (0xffffff);
+		if (box->color_set == 0)
+		{
+			if (!*box->he->color[y][x])
+				return (0xffffff);
+			else
+				return (hd_to_d(box->he->color[y][x]));
+		}
 		else
-			return (hd_to_d(box->he->color[y][x]));
+		{
+			return (rainbow_road(box->rainbow, 6));
+			// i++;
+			// // printf("%d\n", i);
+			// if (!i)
+			// 	return (RED);
+			// else if (i == 1)
+			// 	return (ORANGE);
+			// else if (i == 2)
+			// 	return (YELLOW);
+			// else if (i == 3)
+			// 	return (GREEN);
+			// else if (i == 4)
+			// 	return (BLUE);
+			// else if (i == 5)
+			// 	return (INDIGO);
+			// else
+			// {
+			// 	i = -1;
+			// 	return (VIOLET);
+			// }
+		}
 	}
 	else
 		return (0x0);
@@ -113,14 +150,15 @@ void	point_finder(t_box *box, t_dr_map *m, int event)
 				box->ce->color = init_color(box, m->y, m->x + 1, event);
 				m->height = add_height(box, m->y, m->x);
 				m->height2 = add_height(box, m->y, m->x + 1);
-				line_x(box, m);
+				line_x(box, m, event);
 			}
 			if (m->y < m->len_y && box->he->z[m->y + 1])
 			{
+				box->ci->color = init_color(box, m->y, m->x, event);
 				box->ce->color = init_color(box, m->y + 1, m->x, event);
 				m->height = add_height(box, m->y, m->x);
 				m->height2 = add_height(box, m->y + 1, m->x);
-				line_y(box, m);
+				line_y(box, m, event);
 			}
 			m->i++;
 			m->iso_y++;
