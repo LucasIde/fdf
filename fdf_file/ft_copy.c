@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 17:04:49 by lide              #+#    #+#             */
-/*   Updated: 2022/05/09 17:15:43 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/12 03:14:39 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	with_color(t_copy *c, t_box *box, char **splited, int y)
 	c->tmp = ft_atoi(c->str[0]);
 	if (c->tmp == 2147483649)
 		return (check_error(c, box, y, 1));
-	box->he->z[y][c->x] = (int)c->tmp;
+	box->he->z[y][c->x] = c->tmp;
 	c->len = len_c(c->str[1]);
 	c->tmp = check_color(c->str[1], c->len);
 	if (c->tmp == 1)
@@ -60,29 +60,11 @@ int	without_color(t_copy *c, t_box *box, char **splited, int y)
 	c->tmp = ft_atoi(splited[c->x]);
 	if (c->tmp == 2147483649)
 		return (check_error(c, box, y, 4));
-	box->he->z[y][c->x] = (int)c->tmp;
+	box->he->z[y][c->x] = c->tmp;
 	box->he->color[y][c->x] = (char *)malloc(sizeof(char) * 1);
 	if (!box->he->color[y][c->x])
 		return (check_error(c, box, y, 5));
 	box->he->color[y][c->x][0] = '\0';
-	return (0);
-}
-
-int	check_rectangle(int y, t_copy *c, t_box *box)
-{
-	static int	len;
-
-	if (y == 0)
-		len = c->x;
-	else
-	{
-		if (c->x != len)
-		{
-			write(2, "the map must be rectangle\n", 26);
-			box->he->z[y] = NULL;
-			return (-3);
-		}
-	}
 	return (0);
 }
 

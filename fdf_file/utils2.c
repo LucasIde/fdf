@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 16:30:24 by lide              #+#    #+#             */
-/*   Updated: 2022/05/09 16:35:35 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/12 01:21:56 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,55 @@ int	check_color(char *str, int len)
 			&& (str[i] < 'A' || str[i] > 'F'))
 			return (1);
 		i++;
+	}
+	return (0);
+}
+
+void	find_delta(t_box *box, int *dy, int *dx)
+{
+	if (box->ce->x >= box->ci->x)
+		*dx = box->ce->x - box->ci->x;
+	else if (box->ce->x < box->ci->x)
+		*dx = box->ci->x - box->ce->x;
+	*dy = box->ce->y - box->ci->y;
+}
+
+unsigned int	hd_to_d(char *str)
+{
+	int				len;
+	int				i;
+	unsigned int	color;
+
+	i = -1;
+	color = 0;
+	len = len_c(str);
+	len--;
+	while (++i < len - 1)
+	{
+		if (str[len - i] >= '0' && str[len - i] <= '9')
+			color += (str[len - i] - '0') * pow(16, i);
+		else if (str[len - i] >= 'a' && str[len - i] <= 'f')
+			color += ((str[len - i] - 'a') + 10) * pow(16, i);
+		else if (str[len - i] >= 'A' && str[len - i] <= 'F')
+			color += ((str[len - i] - 'A') + 10) * pow(16, i);
+	}
+	return (color);
+}
+
+int	check_rectangle(int y, t_copy *c, t_box *box)
+{
+	static int	len;
+
+	if (y == 0)
+		len = c->x;
+	else
+	{
+		if (c->x != len)
+		{
+			write(2, "the map must be rectangle\n", 26);
+			box->he->z[y] = NULL;
+			return (-3);
+		}
 	}
 	return (0);
 }

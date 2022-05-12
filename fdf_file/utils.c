@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 08:24:04 by lide              #+#    #+#             */
-/*   Updated: 2022/05/10 15:59:52 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/12 03:10:50 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,28 +46,6 @@ char	*ft_strdup(char *s1)
 	}
 	s2[i] = 0;
 	return (s2);
-}
-
-unsigned int	hd_to_d(char *str)
-{
-	int	len;
-	int	i;
-	unsigned int	color;
-
-	i = -1;
-	color = 0;
-	len = len_c(str);
-	len--;
-	while (++i < len - 1)
-	{
-		if (str[len - i] >= '0' && str[len - i] <= '9')
-			color += (str[len - i] - '0') * pow(16, i);
-		else if (str[len - i] >= 'a' && str[len - i] <= 'f')
-			color += ((str[len - i] - 'a') + 10) * pow(16, i);
-		else if (str[len - i] >= 'A' && str[len - i] <= 'F')
-			color += ((str[len - i] - 'A') + 10) * pow(16, i);
-	}
-	return (color);
 }
 
 long	ft_atoi(char *str)

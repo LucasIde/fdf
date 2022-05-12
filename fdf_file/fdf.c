@@ -6,74 +6,30 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 16:44:27 by lide              #+#    #+#             */
-/*   Updated: 2022/05/11 04:05:32 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/12 03:18:37 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void	print(t_box *box)
-{
-	int	y;
-	int	x;
-
-	y = -1;
-	while (box->he->z[++y])
-	{
-		x = -1;
-		while (box->he->z[y][++x] != 2147483649)
-			printf("-| %ld , %s |-\n", box->he->z[y][x], box->he->color[y][x]);
-		printf("\n");
-	}
-}
-
-// void	test_map(t_box *box)
+// void	print(t_box *box)
 // {
-// 	int	i;
-// 	int	j;
-// 	int	x;
 // 	int	y;
-// 	int box->len;
+// 	int	x;
 
-// 	x = 0;
-// 	y = 0;
-// 	while (box->he->z[0][x] != 2147483649)
-// 		x++;
-// 	while (box->he->z[y])
-// 		y++;
-// 	box->len = 100;
-// 	i = -1;
-
-// 	while (++i <= y)
+// 	y = -1;
+// 	while (box->he->z[++y])
 // 	{
-// 		j = -1;
-// 		while (++j <= x)
-// 		{
-// 			if (j < x)
-// 			{
-// 				box->ci->y = (i * box->len) + 400;
-// 				box->ce->y = box->ci->y;
-// 				box->ci->x = (j * box->len) + 400;
-// 				box->ce->x = ((j + 1) * box->len) + 400;
-// 				// printf(" x = |%d , %d|\n", box->ci->x, box->ce->x);
-// 				dr_line(box);
-// 			}
-// 			if (i < y)
-// 			{
-// 				box->ci->y = (i * box->len) + 400;
-// 				box->ce->y = ((i + 1) * box->len) + 400;
-// 				box->ci->x = (j * box->len) + 400;
-// 				box->ce->x = box->ci->x;
-// 				dr_line(box);
-// 				// printf(" y = |%d , %d|\n", box->ci->y, box->ce->y);
-// 			}
-// 		}
+// 		x = -1;
+// 		while (box->he->z[y][++x] != 2147483649)
+// 			printf("-| %ld , %s |-\n", box->he->z[y][x], box->he->color[y][x]);
+// 		printf("\n");
 // 	}
 // }
 
 int	check_fdf(char *argv)
 {
-	int len;
+	int	len;
 
 	len = len_c(argv);
 	if (argv[len - 1] != 'f' || argv[len - 2] != 'd'
@@ -83,6 +39,27 @@ int	check_fdf(char *argv)
 		return (1);
 	}
 	return (0);
+}
+
+void	find_z(t_box *box)
+{
+	int x;
+	int y;
+
+	box->max_z = 0;
+	box->min_z = 0;
+	y = -1;
+	while (box->he->z[++y])
+	{
+		x = -1;
+		while(box->he->z[y][++x] != 2147483649)
+		{
+			if (box->he->z[y][x] > box->max_z && box->he->z[y][x] != 2147483649)
+				box->max_z = box->he->z[y][x];
+			if (box->he->z[y][x] < box->min_z)
+				box->min_z = box->he->z[y][x];
+		}
+	}
 }
 
 int	main(int argc, char **argv)
@@ -101,6 +78,7 @@ int	main(int argc, char **argv)
 		return (0);
 	// print(&box);
 	dr_map(&box);
+	find_z(&box);
 	if (i == 0)
 		i = -4;
 	// freebox(i, &box);
@@ -113,7 +91,6 @@ int	main(int argc, char **argv)
 	mlx_loop(box.mlx_ptr);
 	return (0);
 }
-
 
 //truc a check :
 //ajouter le close fd a close
