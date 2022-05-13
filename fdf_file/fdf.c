@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 16:44:27 by lide              #+#    #+#             */
-/*   Updated: 2022/05/12 03:18:37 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/13 02:53:59 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ int	check_fdf(char *argv)
 
 void	find_z(t_box *box)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	box->max_z = 0;
 	box->min_z = 0;
@@ -52,7 +52,7 @@ void	find_z(t_box *box)
 	while (box->he->z[++y])
 	{
 		x = -1;
-		while(box->he->z[y][++x] != 2147483649)
+		while (box->he->z[y][++x] != 2147483649)
 		{
 			if (box->he->z[y][x] > box->max_z && box->he->z[y][x] != 2147483649)
 				box->max_z = box->he->z[y][x];

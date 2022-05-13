@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 16:27:36 by lide              #+#    #+#             */
-/*   Updated: 2022/05/12 02:23:00 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/12 20:16:04 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,8 @@ int	init_data(t_box *box)
 	box->len = 10;
 	box->color_set = 0;
 	box->speed = 5;
-	box->rotate = 1;
+	box->rotate_x = 0;
+	box->rotate_y = 0;
 	set_value_key(box);
 	return (0);
 }

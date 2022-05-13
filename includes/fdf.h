@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 18:08:54 by lide              #+#    #+#             */
-/*   Updated: 2022/05/12 03:04:32 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/13 02:53:17 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,18 @@ typedef struct s_point
 	unsigned int	color;
 }				t_point;
 
+typedef struct s_mountain
+{
+	unsigned int	color;
+	long			tmp;
+	long			mid;
+	long			div;
+	long			height;
+	long			z;
+	long			max_z;
+	long			min_z;
+}				t_mountain;
+
 typedef struct s_box
 {
 	t_point			*ci;
@@ -158,12 +170,13 @@ typedef struct s_box
 	int				move_y;
 	int				move_x;
 	int				height;
-	int				rotate;
+	double			rotate_x;
+	double			rotate_y;
 	int				speed;
 	unsigned int	color;
 	int				color_set;
-	long				max_z;
-	long				min_z;
+	long			max_z;
+	long			min_z;
 }				t_box;
 
 void			dr_pixel(t_data *img, int x, int y, int color);
@@ -201,5 +214,7 @@ void			rainbow_move(t_box *box, unsigned int *template, int size);
 int				check_rectangle(int y, t_copy *c, t_box *box);
 void			color_and_pixel(t_box *box, t_color *c);
 void			init_rainbow(unsigned int *tab);
+unsigned int	rainbow_road(unsigned int *template, int size, int y, int x);
+unsigned int	mountain(t_box *box, int y, int x);
 
 #endif

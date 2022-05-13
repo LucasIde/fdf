@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:59:05 by lide              #+#    #+#             */
-/*   Updated: 2022/05/12 05:32:40 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/12 18:03:20 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,50 +31,6 @@ void	init_dr_map(t_box *box, t_dr_map *m)
 	m->y = -1;
 	m->iso_x = 0;
 	m->i = 0;
-}
-
-unsigned int	rainbow_road(unsigned int *template, int size, int y, int x)
-{
-	static int	i = -1;
-
-	i++;
-	if (i >= size || (x == 0 && y == 0))
-		i = 0;
-	return (template[i]);
-}
-
-unsigned int	mountain(t_box *box, int y, int x)
-{
-	long			mid;
-	long			div;
-	long			height;
-	unsigned int	color;
-
-	mid = box->max_z - ((box->max_z - box->min_z) / 2);
-	height = box->he->z[y][x] - box->min_z;
-	if (box->he->z[y][x] >= box->min_z && box->he->z[y][x] <= mid)
-	{
-		if (box->he->z[y][x] == box->min_z)
-			return (0x0000ff);
-		else if (box->he->z[y][x] == mid)
-			return (0x00ff00);
-		div = (mid - box->min_z);
-		if (div < 0)
-			div *= -1;
-		color = ((0x00ff00 / (div) - ((0x00ff00 / (div)) % 256)) * height) + ((0x0000ff / (div) - ((0x0000ff / (div)) % 1)) * (div - height));
-		return (color);
-	}
-	else
-	{
-		if (box->he->z[y][x] == box->max_z)
-			return (0xff0000);
-		div = (box->max_z - mid);
-		height -= mid - box->min_z;
-		if (div < 0)
-			div *= -1;
-		color = ((0xff0000 / (div) - ((0xff0000 / (div)) % 65536)) * height) + ((0x00ff00 / (div) - ((0x00ff00 / (div)) % 256)) * (div - height));
-		return (color );
-	}
 }
 
 unsigned int	init_color(t_box *box, int y, int x, int event)

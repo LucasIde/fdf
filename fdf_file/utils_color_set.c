@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 22:19:06 by lide              #+#    #+#             */
-/*   Updated: 2022/05/11 23:06:25 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/12 22:35:07 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,19 @@ void	color_scene(t_box *box)
 
 void	rainbow_move(t_box *box, unsigned int *template, int size)
 {
-	static int		cmp;
+	static int		ct;
 	unsigned int	tmp;
 	int				i;
 
-	cmp++;
-	if (cmp >= box->speed)
+	ct++;
+	if (ct >= box->speed)
 	{
 		i = -1;
 		tmp = template[0];
 		while (++i < size)
 			template[i] = template[i + 1];
 		template[size] = tmp;
-		cmp = 0;
+		ct = 0;
 	}
 }
 

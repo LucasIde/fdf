@@ -6,45 +6,49 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 13:45:33 by lide              #+#    #+#             */
-/*   Updated: 2022/05/12 01:27:32 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/13 02:19:41 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-// void	angle(t_box *box)
-// {
-// 	unsigned int	x;
-// 	unsigned int	y;
+void	angle(t_box *box)
+{
+	double	x;
+	double	y;
 
-// 	x = box->ci->x;
-// 	y = box->ci->y;
-// 	box->ci->x = (x * cos(30)) - (y * sin(30));
-// 	box->ci->y = (x * sin(30)) + (y * cos(30));
-// 	x = box->ce->x;
-// 	y = box->ce->y;
-// 	box->ce->x = (x * cos(30)) - (y * sin(30));
-// 	box->ce->y = (x * sin(30)) + (y * cos(30));
-// 	printf("%d\n", box->ce->y);
-// }
+	x = box->ci->x;
+	y = box->ci->y;
+	box->ci->x = (x * cos(box->rotate_x)) - (y * sin(box->rotate_x));
+	box->ci->y = (x * sin(box->rotate_y)) + (y * cos(box->rotate_y));
+	x = box->ce->x;
+	y = box->ce->y;
+	box->ce->x = (x * cos(box->rotate_x)) - (y * sin(box->rotate_x));
+	box->ce->y = (x * sin(box->rotate_y)) + (y * cos(box->rotate_y));
+}
 
 void	line_x(t_box *box, t_dr_map *m, int event)
 {
 	box->ci->color = init_color(box, m->y, m->x, event);
 	box->ce->color = init_color(box, m->y, m->x + 1, event);
 	box->ci->y = m->y + m->iso_y - (box->he->z[m->y][m->x] * m->height);
-	box->ci->y += box->move_y;
-	box->ci->y = (box->ci->y * box->len) + (540 - ((m->len_y / 2) * box->len));
+	box->ci->y = (box->ci->y * box->len);
 	box->ce->y = m->y + m->iso_y + 1;
-	box->ce->y += box->move_y - (box->he->z[m->y][m->x + 1] * m->height2);
-	box->ce->y = (box->ce->y * box->len) + (540 - ((m->len_y / 2) * box->len));
+	box->ce->y -= (box->he->z[m->y][m->x + 1] * m->height2);
+	box->ce->y = (box->ce->y * box->len);
 	box->ci->x = m->x + m->i - m->iso_x;
-	box->ci->x += box->move_x;
-	box->ci->x = (box->ci->x * box->len) + (970 - (m->len_x / 2) * box->len);
+	box->ci->x = (box->ci->x * box->len);
 	box->ce->x = m->x + m->i + 2 - m->iso_x;
-	box->ce->x += box->move_x;
-	box->ce->x = (box->ce->x * box->len) + (970 - (m->len_x / 2) * box->len);
-	// angle(box);
+	box->ce->x = (box->ce->x * box->len);
+	angle(box);
+	box->ci->y += box->move_y * box->len;
+	box->ce->y += box->move_y * box->len;
+	box->ci->x += box->move_x * box->len;
+	box->ce->x += box->move_x * box->len;
+	box->ci->y += 540 - ((m->len_y / 2) * box->len);
+	box->ce->y += 540 - ((m->len_y / 2) * box->len);
+	box->ci->x += 970 - ((m->len_x / 2) * box->len);
+	box->ce->x += 970 - ((m->len_x / 2) * box->len);
 	dr_line(box, event);
 }
 
@@ -53,18 +57,23 @@ void	line_y(t_box *box, t_dr_map *m, int event)
 	box->ci->color = init_color(box, m->y, m->x, event);
 	box->ce->color = init_color(box, m->y + 1, m->x, event);
 	box->ci->y = m->y + m->iso_y - (box->he->z[m->y][m->x] * m->height);
-	box->ci->y += box->move_y;
-	box->ci->y = (box->ci->y * box->len) + (540 - ((m->len_y / 2) * box->len));
+	box->ci->y = (box->ci->y * box->len);
 	box->ce->y = m->y + m->iso_y + 1;
-	box->ce->y += box->move_y - (box->he->z[m->y + 1][m->x] * m->height2);
-	box->ce->y = (box->ce->y * box->len) + (540 - ((m->len_y / 2) * box->len));
+	box->ce->y -= (box->he->z[m->y + 1][m->x] * m->height2);
+	box->ce->y = (box->ce->y * box->len);
 	box->ci->x = m->x + m->i - m->iso_x;
-	box->ci->x += box->move_x;
-	box->ci->x = (box->ci->x * box->len) + (970 - (m->len_x / 2) * box->len);
+	box->ci->x = (box->ci->x * box->len);
 	box->ce->x = m->x + m->i - 2 - m->iso_x;
-	box->ce->x += box->move_x;
-	box->ce->x = (box->ce->x * box->len) + (970 - (m->len_x / 2) * box->len);
-	// angle(box);
+	box->ce->x = (box->ce->x * box->len);
+	angle(box);
+	box->ci->y += box->move_y * box->len;
+	box->ce->y += box->move_y * box->len;
+	box->ci->x += box->move_x * box->len;
+	box->ce->x += box->move_x * box->len;
+	box->ci->y += 540 - ((m->len_y / 2) * box->len);
+	box->ce->y += 540 - ((m->len_y / 2) * box->len);
+	box->ci->x += 970 - ((m->len_x / 2) * box->len);
+	box->ce->x += 970 - ((m->len_x / 2) * box->len);
 	dr_line(box, event);
 }
 

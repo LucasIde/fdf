@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 23:54:02 by lide              #+#    #+#             */
-/*   Updated: 2022/05/11 23:54:38 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/12 22:58:37 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	reset_key(t_box *box)
 	box->move_y = 0;
 	box->height = 1;
 	box->speed = 5;
+	box->rotate_x = 0;
+	box->rotate_y = 0;
 	box->len = 10;
 	box->key->r = 0;
 }
@@ -52,6 +54,14 @@ void	key_move2(t_box *box)
 		box->speed++;
 	if (box->key->plus == 1)
 		box->speed--;
+	if (box->key->a == 1)
+		box->rotate_x -= 0.1;
+	if (box->key->d == 1)
+		box->rotate_x += 0.1;
+	if (box->key->w == 1)
+		box->rotate_y -= 0.1;
+	if (box->key->s == 1)
+		box->rotate_y += 0.1;
 }
 
 int	key_move(t_box *box)

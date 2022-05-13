@@ -6,7 +6,7 @@
 #    By: lide <lide@student.s19.be>                 +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/18 18:11:55 by lide              #+#    #+#              #
-#    Updated: 2022/05/12 01:01:18 by lide             ###   ########.fr        #
+#    Updated: 2022/05/12 18:03:55 by lide             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRCS		=	fdf_file/fdf.c\
 				fdf_file/draw_map.c\
 				fdf_file/utils_draw_map.c\
 				fdf_file/color_handler.c\
+				fdf_file/utils_color_template.c\
 				fdf_file/ft_copy.c\
 				fdf_file/utils_color_set.c\
 				fdf_file/utils.c\
