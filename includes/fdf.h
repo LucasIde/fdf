@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 18:08:54 by lide              #+#    #+#             */
-/*   Updated: 2022/05/13 02:53:17 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/13 18:17:59 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,14 @@
 # define KEY_Q 12
 # define KEY_E 14
 # define KEY_R 15
-# define KEY_0 82
-# define KEY_1 83
-# define KEY_2 84
+# define KEY_0 29
+# define KEY_1 18
+# define KEY_2 19
+# define KEY_3 20
+# define KEY_0_N 82
+# define KEY_1_N 83
+# define KEY_2_N 84
+# define KEY_3_N 85
 # define KEY_MINUS 78
 # define KEY_PLUS 69
 # define KEY_UP 126
@@ -177,6 +182,8 @@ typedef struct s_box
 	int				color_set;
 	long			max_z;
 	long			min_z;
+	long			var_zi;
+	long			var_ze;
 }				t_box;
 
 void			dr_pixel(t_data *img, int x, int y, int color);

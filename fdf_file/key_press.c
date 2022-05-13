@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 22:11:08 by lide              #+#    #+#             */
-/*   Updated: 2022/05/12 20:13:07 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/13 15:45:35 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ int	key_release(int keycode, t_box *box)
 		box->key->minus = 0;
 	else if (keycode == KEY_PLUS)
 		box->key->plus = 0;
-	else if (keycode == KEY_0)
+	else if (keycode == KEY_0 || keycode == KEY_0_N)
 		box->key->zero = 0;
-	else if (keycode == KEY_1)
+	else if (keycode == KEY_1 || keycode == KEY_1_N)
 		box->key->one = 0;
-	else if (keycode == KEY_2)
+	else if (keycode == KEY_2 || keycode == KEY_2_N)
 		box->key->two = 0;
 	else if (keycode == KEY_UP)
 		box->key->up = 0;
@@ -79,11 +79,11 @@ int	key_press(int keycode, t_box *box)
 		box->key->minus = 1;
 	else if (keycode == KEY_PLUS)
 		box->key->plus = 1;
-	else if (keycode == KEY_0)
+	else if (keycode == KEY_0 || keycode == KEY_0_N)
 		box->key->zero = 1;
-	else if (keycode == KEY_1)
+	else if (keycode == KEY_1 || keycode == KEY_1_N)
 		box->key->one = 1;
-	else if (keycode == KEY_2)
+	else if (keycode == KEY_2 || keycode == KEY_2_N)
 		box->key->two = 1;
 	else if (keycode == KEY_UP)
 		box->key->up = 1;

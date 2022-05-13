@@ -6,41 +6,105 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 13:45:33 by lide              #+#    #+#             */
-/*   Updated: 2022/05/13 02:19:41 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/13 18:58:40 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void	angle(t_box *box)
+	// double	x;
+	// double	y;
+
+	// x = box->ci->x;
+	// y = box->ci->y;
+	// box->ci->x = (x * cos(box->rotate_x)) - (y * sin(box->rotate_x));
+	// box->ci->y = (x * sin(box->rotate_y)) + (y * cos(box->rotate_y));
+	// x = box->ce->x;
+	// y = box->ce->y;
+	// box->ce->x = (x * cos(box->rotate_x)) - (y * sin(box->rotate_x));
+	// box->ce->y = (x * sin(box->rotate_y)) + (y * cos(box->rotate_y));
+void	angle_x(t_box *box, t_dr_map *m)
+{
+	double	y;
+	double	z;
+
+	y = box->ci->y;
+	z = box->he->z[m->y][m->x] * m->height;
+	box->ci->y = (y * cos(box->rotate_x)) - (z * sin(box->rotate_x));
+	box->var_zi = (y * sin(box->rotate_x)) + (z * cos(box->rotate_x));
+	y = box->ce->y;
+	z = box->he->z[m->y][m->x + 1] * m->height2;
+	box->ce->y = (y * cos(box->rotate_x)) - (z * sin(box->rotate_x));
+	box->var_ze = (y * sin(box->rotate_x)) + (z * cos(box->rotate_x));
+}
+
+void	angle_x2(t_box *box, t_dr_map *m)
+{
+	double	y;
+	double	z;
+
+	y = box->ci->y;
+	z = box->he->z[m->y][m->x] * m->height;
+	box->ci->y = (y * cos(box->rotate_x)) - (z * sin(box->rotate_x));
+	box->var_zi = (y * sin(box->rotate_x)) + (z * cos(box->rotate_x));
+	y = box->ce->y;
+	z = box->he->z[m->y + 1][m->x] * m->height2;
+	box->ce->y = (y * cos(box->rotate_x)) - (z * sin(box->rotate_x));
+	box->var_ze = (y * sin(box->rotate_x)) + (z * cos(box->rotate_x));
+}
+
+void	angle_y(t_box *box, t_dr_map *m)
 {
 	double	x;
 	double	y;
+	double	z;
 
 	x = box->ci->x;
 	y = box->ci->y;
-	box->ci->x = (x * cos(box->rotate_x)) - (y * sin(box->rotate_x));
-	box->ci->y = (x * sin(box->rotate_y)) + (y * cos(box->rotate_y));
+	z = box->he->z[m->y][m->x] * m->height;
+	box->ci->x = (z * sin(box->rotate_y)) + (x * cos(box->rotate_y));
+	box->var_zi = (y * cos(box->rotate_y)) - (x * sin(box->rotate_y));
 	x = box->ce->x;
 	y = box->ce->y;
-	box->ce->x = (x * cos(box->rotate_x)) - (y * sin(box->rotate_x));
-	box->ce->y = (x * sin(box->rotate_y)) + (y * cos(box->rotate_y));
+	z = box->he->z[m->y][m->x + 1] * m->height2;
+	box->ce->x = (z * sin(box->rotate_y)) + (x * cos(box->rotate_y));
+	box->var_ze = (y * cos(box->rotate_y)) - (x * sin(box->rotate_y));
+}
+
+void	angle_y2(t_box *box, t_dr_map *m)
+{
+	double	x;
+	double	y;
+	double	z;
+
+	x = box->ci->x;
+	y = box->ci->y;
+	z = box->he->z[m->y][m->x] * m->height;
+	box->ci->x = (z * sin(box->rotate_y)) + (x * cos(box->rotate_y));
+	box->var_zi = (y * cos(box->rotate_y)) - (x * sin(box->rotate_y));
+	x = box->ce->x;
+	y = box->ce->y;
+	z = box->he->z[m->y + 1][m->x] * m->height2;
+	box->ce->x = (z * sin(box->rotate_y)) + (x * cos(box->rotate_y));
+	box->var_ze = (y * cos(box->rotate_y)) - (x * sin(box->rotate_y));
 }
 
 void	line_x(t_box *box, t_dr_map *m, int event)
 {
 	box->ci->color = init_color(box, m->y, m->x, event);
 	box->ce->color = init_color(box, m->y, m->x + 1, event);
-	box->ci->y = m->y + m->iso_y - (box->he->z[m->y][m->x] * m->height);
+	box->ci->y = m->y + m->iso_y;
 	box->ci->y = (box->ci->y * box->len);
 	box->ce->y = m->y + m->iso_y + 1;
-	box->ce->y -= (box->he->z[m->y][m->x + 1] * m->height2);
 	box->ce->y = (box->ce->y * box->len);
 	box->ci->x = m->x + m->i - m->iso_x;
 	box->ci->x = (box->ci->x * box->len);
 	box->ce->x = m->x + m->i + 2 - m->iso_x;
 	box->ce->x = (box->ce->x * box->len);
-	angle(box);
+	// angle_x(box, m);
+	angle_y(box, m);
+	box->ci->y -= box->var_zi * box->len;
+	box->ce->y -= box->var_ze * box->len;
 	box->ci->y += box->move_y * box->len;
 	box->ce->y += box->move_y * box->len;
 	box->ci->x += box->move_x * box->len;
@@ -56,16 +120,18 @@ void	line_y(t_box *box, t_dr_map *m, int event)
 {
 	box->ci->color = init_color(box, m->y, m->x, event);
 	box->ce->color = init_color(box, m->y + 1, m->x, event);
-	box->ci->y = m->y + m->iso_y - (box->he->z[m->y][m->x] * m->height);
+	box->ci->y = m->y + m->iso_y;
 	box->ci->y = (box->ci->y * box->len);
 	box->ce->y = m->y + m->iso_y + 1;
-	box->ce->y -= (box->he->z[m->y + 1][m->x] * m->height2);
 	box->ce->y = (box->ce->y * box->len);
 	box->ci->x = m->x + m->i - m->iso_x;
 	box->ci->x = (box->ci->x * box->len);
 	box->ce->x = m->x + m->i - 2 - m->iso_x;
 	box->ce->x = (box->ce->x * box->len);
-	angle(box);
+	// angle_x2(box, m);
+	angle_y2(box, m);
+	box->ci->y -= box->var_zi * box->len;
+	box->ce->y -= box->var_ze * box->len;
 	box->ci->y += box->move_y * box->len;
 	box->ce->y += box->move_y * box->len;
 	box->ci->x += box->move_x * box->len;
