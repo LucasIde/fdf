@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 22:11:08 by lide              #+#    #+#             */
-/*   Updated: 2022/05/13 15:45:35 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/17 19:56:10 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@ void	key_release_letter(int keycode, t_box *box)
 		box->key->q = 0;
 	else if (keycode == KEY_E)
 		box->key->e = 0;
+	else if (keycode == KEY_Z)
+		box->key->z = 0;
+	else if (keycode == KEY_X)
+		box->key->x = 0;
 }
 
 int	key_release(int keycode, t_box *box)
@@ -41,6 +45,8 @@ int	key_release(int keycode, t_box *box)
 		box->key->one = 0;
 	else if (keycode == KEY_2 || keycode == KEY_2_N)
 		box->key->two = 0;
+	else if (keycode == KEY_3 || keycode == KEY_3_N)
+		box->key->three = 0;
 	else if (keycode == KEY_UP)
 		box->key->up = 0;
 	else if (keycode == KEY_LEFT)
@@ -51,6 +57,8 @@ int	key_release(int keycode, t_box *box)
 		box->key->right = 0;
 	else if (keycode == KEY_ESC)
 		box->key->esc = 0;
+	else if (keycode == KEY_TAB)
+		box->key->tab = 0;
 	return (0);
 }
 
@@ -70,6 +78,10 @@ void	key_press_letter(int keycode, t_box *box)
 		box->key->e = 1;
 	else if (keycode == KEY_R)
 		box->key->r = 1;
+	else if (keycode == KEY_Z)
+		box->key->z = 1;
+	else if (keycode == KEY_X)
+		box->key->x = 1;
 }
 
 int	key_press(int keycode, t_box *box)
@@ -85,6 +97,8 @@ int	key_press(int keycode, t_box *box)
 		box->key->one = 1;
 	else if (keycode == KEY_2 || keycode == KEY_2_N)
 		box->key->two = 1;
+	else if (keycode == KEY_3 || keycode == KEY_3_N)
+		box->key->three = 1;
 	else if (keycode == KEY_UP)
 		box->key->up = 1;
 	else if (keycode == KEY_LEFT)
@@ -95,5 +109,7 @@ int	key_press(int keycode, t_box *box)
 		box->key->right = 1;
 	else if (keycode == KEY_ESC)
 		box->key->esc = 1;
+	else if (keycode == KEY_TAB)
+		box->key->tab = 1;
 	return (0);
 }

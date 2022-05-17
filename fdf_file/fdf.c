@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 16:44:27 by lide              #+#    #+#             */
-/*   Updated: 2022/05/13 02:53:59 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/17 19:41:35 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,3 +97,4 @@ int	main(int argc, char **argv)
 //check error init data
 //proteger mlx (init ...)
 //free rainbow
+//check cmd bug

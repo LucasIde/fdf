@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 16:27:36 by lide              #+#    #+#             */
-/*   Updated: 2022/05/12 20:16:04 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/17 19:55:11 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,15 @@ void	set_value_key(t_box *box)
 	box->key->q = 0;
 	box->key->e = 0;
 	box->key->r = 0;
+	box->key->x = 0;
+	box->key->z = 0;
 	box->key->up = 0;
 	box->key->left = 0;
 	box->key->down = 0;
 	box->key->right = 0;
 	box->key->minus = 0;
 	box->key->plus = 0;
+	box->key->tab = 0;
 	box->key->esc = 0;
 }
 
@@ -89,6 +92,7 @@ int	init_data(t_box *box)
 	box->speed = 5;
 	box->rotate_x = 0;
 	box->rotate_y = 0;
+	box->rotate_z = 0;
 	set_value_key(box);
 	return (0);
 }

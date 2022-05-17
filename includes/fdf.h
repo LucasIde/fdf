@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 18:08:54 by lide              #+#    #+#             */
-/*   Updated: 2022/05/13 18:17:59 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/17 19:54:23 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # define KEY_Q 12
 # define KEY_E 14
 # define KEY_R 15
+# define KEY_Z 6
+# define KEY_X 7
 # define KEY_0 29
 # define KEY_1 18
 # define KEY_2 19
@@ -39,6 +41,7 @@
 # define KEY_LEFT 123
 # define KEY_DOWN 125
 # define KEY_RIGHT 124
+# define KEY_TAB 48
 # define KEY_ESC 53
 # define RED 0xC41E3A
 # define ORANGE 0xffa500
@@ -65,9 +68,12 @@ typedef struct s_key_set
 	int	q;
 	int	e;
 	int	r;
+	int	z;
+	int	x;
 	int	zero;
 	int	one;
 	int	two;
+	int	three;
 	int	up;
 	int	left;
 	int	down;
@@ -75,6 +81,7 @@ typedef struct s_key_set
 	int	esc;
 	int	minus;
 	int	plus;
+	int	tab;
 }				t_key_set;
 
 typedef struct s_parcing
@@ -177,6 +184,7 @@ typedef struct s_box
 	int				height;
 	double			rotate_x;
 	double			rotate_y;
+	double			rotate_z;
 	int				speed;
 	unsigned int	color;
 	int				color_set;
@@ -223,5 +231,6 @@ void			color_and_pixel(t_box *box, t_color *c);
 void			init_rainbow(unsigned int *tab);
 unsigned int	rainbow_road(unsigned int *template, int size, int y, int x);
 unsigned int	mountain(t_box *box, int y, int x);
+void			color_screen( int screen, t_box *box);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 22:19:06 by lide              #+#    #+#             */
-/*   Updated: 2022/05/12 22:35:07 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/17 18:16:54 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,18 @@
 
 void	color_scene(t_box *box)
 {
-	if (box->key->zero == 1 && box->key->one == 0 && box->key->two == 0)
+	if (box->key->zero == 1 && box->key->one == 0 && box->key->two == 0
+		&& box->key->three == 0)
 		box->color_set = 0;
-	if (box->key->zero == 0 && box->key->one == 1 && box->key->two == 0)
+	else if (box->key->zero == 0 && box->key->one == 1 && box->key->two == 0
+		&& box->key->three == 0)
 		box->color_set = 1;
-	if (box->key->zero == 0 && box->key->one == 0 && box->key->two == 1)
+	else if (box->key->zero == 0 && box->key->one == 0 && box->key->two == 1
+		&& box->key->three == 0)
 		box->color_set = 2;
+	else if (box->key->zero == 0 && box->key->one == 0 && box->key->two == 0
+		&& box->key->three == 1)
+		box->color_set = 3;
 }
 
 void	rainbow_move(t_box *box, unsigned int *template, int size)
