@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 16:44:27 by lide              #+#    #+#             */
-/*   Updated: 2022/05/17 19:41:35 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/18 16:20:28 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,3 +98,4 @@ int	main(int argc, char **argv)
 //proteger mlx (init ...)
 //free rainbow
 //check cmd bug
+//pour ecrire utiliser define
