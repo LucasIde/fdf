@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 16:44:27 by lide              #+#    #+#             */
-/*   Updated: 2022/05/18 16:20:28 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/19 16:35:08 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,21 @@ void	find_z(t_box *box)
 	}
 }
 
+void	find_mid(t_box *box)
+{
+	int	len_y;
+	int	len_x;
+
+	len_x = 0;
+	len_y = 0;
+	while (box->he->z[0][len_x] != 2147483649)
+		len_x++;
+	while (box->he->z[len_y])
+		len_y++;
+	box->c_mid->y = len_y/2;
+	box->c_mid->x = len_x/2;
+}
+
 int	main(int argc, char **argv)
 {
 	t_box	box;
@@ -77,6 +92,7 @@ int	main(int argc, char **argv)
 	if (i == -4 || i == -1)
 		return (0);
 	// print(&box);
+	find_mid(&box);
 	dr_map(&box);
 	find_z(&box);
 	if (i == 0)

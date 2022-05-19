@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 18:08:54 by lide              #+#    #+#             */
-/*   Updated: 2022/05/17 19:54:23 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/19 19:25:03 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,7 @@ typedef struct s_mountain
 typedef struct s_box
 {
 	t_point			*ci;
+	t_point			*c_mid;
 	t_point			*ce;
 	t_height		*he;
 	t_key_set		*key;

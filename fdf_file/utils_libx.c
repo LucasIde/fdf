@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 16:27:36 by lide              #+#    #+#             */
-/*   Updated: 2022/05/17 19:55:11 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/19 18:23:13 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,9 @@ int	data_malloc(t_box *box)
 		return (1);
 	box->ce = malloc(sizeof(t_point));
 	if (!box->ce)
+		return (1);
+	box->c_mid = malloc(sizeof(t_point));
+	if (!box->c_mid)
 		return (1);
 	box->he = malloc(sizeof(t_height));
 	if (!box->he)

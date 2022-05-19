@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 23:54:02 by lide              #+#    #+#             */
-/*   Updated: 2022/05/18 19:29:03 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/19 19:06:02 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,17 @@ void	reset_key(t_box *box)
 void	rotate_xyz(t_box *box)
 {
 	if (box->key->a == 1)
-		box->rotate_x -= 0.01;
+		box->rotate_x -= 0.02;
 	if (box->key->d == 1)
-		box->rotate_x += 0.01;
+		box->rotate_x += 0.02;
 	if (box->key->w == 1)
-		box->rotate_y -= 0.01;
+		box->rotate_y -= 0.02;
 	if (box->key->s == 1)
-		box->rotate_y += 0.01;
+		box->rotate_y += 0.02;
 	if (box->key->q == 1)
-		box->rotate_z -= 0.01;
+		box->rotate_z -= 0.02;
 	if (box->key->e == 1)
-		box->rotate_z += 0.01;
+		box->rotate_z += 0.02;
 	if (box->rotate_x > 360.0 || box->rotate_x < -360.0)
 		box->rotate_x = 0.0;
 	if (box->rotate_y > 360.0 || box->rotate_y < -360.0)
