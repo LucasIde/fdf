@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 22:11:08 by lide              #+#    #+#             */
-/*   Updated: 2022/05/17 19:56:10 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/20 19:28:19 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,12 @@ void	key_release_letter(int keycode, t_box *box)
 		box->key->z = 0;
 	else if (keycode == KEY_X)
 		box->key->x = 0;
+	else if (keycode == KEY_I)
+		box->key->i = 0;
+	else if (keycode == KEY_P)
+		box->key->p = 0;
+	else if (keycode == KEY_TAB)
+		box->key->tab = 0;
 }
 
 int	key_release(int keycode, t_box *box)
@@ -57,8 +63,6 @@ int	key_release(int keycode, t_box *box)
 		box->key->right = 0;
 	else if (keycode == KEY_ESC)
 		box->key->esc = 0;
-	else if (keycode == KEY_TAB)
-		box->key->tab = 0;
 	return (0);
 }
 
@@ -82,6 +86,12 @@ void	key_press_letter(int keycode, t_box *box)
 		box->key->z = 1;
 	else if (keycode == KEY_X)
 		box->key->x = 1;
+	else if (keycode == KEY_I)
+		box->key->i = 1;
+	else if (keycode == KEY_P)
+		box->key->p = 1;
+	else if (keycode == KEY_TAB)
+		box->key->tab = 1;
 }
 
 int	key_press(int keycode, t_box *box)
@@ -109,7 +119,5 @@ int	key_press(int keycode, t_box *box)
 		box->key->right = 1;
 	else if (keycode == KEY_ESC)
 		box->key->esc = 1;
-	else if (keycode == KEY_TAB)
-		box->key->tab = 1;
 	return (0);
 }

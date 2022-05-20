@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 23:54:02 by lide              #+#    #+#             */
-/*   Updated: 2022/05/19 19:06:02 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/20 18:45:03 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,10 @@ int	key_move(t_box *box)
 		color_scene(box);
 	if (box->color_set == 1)
 		rainbow_move(box, box->rainbow, 6);
+	if (box->key->i == 1 && box->key->p == 0)
+		box->view = 0;
+	else if (box->key->i == 0 && box->key->p == 1)
+		box->view = 1;
 	if (box->key->esc == 1)
 	{
 		free(box->img);

@@ -6,7 +6,7 @@
 #    By: lide <lide@student.s19.be>                 +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/18 18:11:55 by lide              #+#    #+#              #
-#    Updated: 2022/05/12 18:03:55 by lide             ###   ########.fr        #
+#    Updated: 2022/05/20 17:30:24 by lide             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,8 @@ SRCS		=	fdf_file/fdf.c\
 				fdf_file/free.c\
 				fdf_file/key_press.c\
 				fdf_file/key_move.c\
+				fdf_file/isometric_view.c\
+				fdf_file/parallel_view.c\
 				fdf_file/parcing_map.c\
 				fdf_file/draw_map.c\
 				fdf_file/utils_draw_map.c\

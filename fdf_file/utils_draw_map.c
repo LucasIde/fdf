@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:59:05 by lide              #+#    #+#             */
-/*   Updated: 2022/05/19 16:08:30 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/20 19:30:14 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ void	init_dr_map(t_box *box, t_dr_map *m)
 
 void	color_screen( int screen, t_box *box)
 {
-	int	y;
-	int	x;
-	unsigned int color;
+	int				y;
+	int				x;
+	unsigned int	color;
 
 	color = 0;
 	if (screen == 1)
@@ -56,7 +56,7 @@ void	color_screen( int screen, t_box *box)
 	mlx_put_image_to_window(box->mlx_ptr, box->win_ptr, box->img, 0, 0);
 }
 
-unsigned int inverted(int event)
+unsigned int	inverted(int event)
 {
 	if (event == 0)
 		return (0x0);

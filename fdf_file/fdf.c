@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 16:44:27 by lide              #+#    #+#             */
-/*   Updated: 2022/05/19 16:35:08 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/20 19:26:37 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ void	find_mid(t_box *box)
 		len_x++;
 	while (box->he->z[len_y])
 		len_y++;
-	box->c_mid->y = len_y/2;
-	box->c_mid->x = len_x/2;
+	box->c_mid->y = len_y / 2;
+	box->c_mid->x = len_x / 2;
 }
 
 int	main(int argc, char **argv)
