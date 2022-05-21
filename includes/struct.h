@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 19:32:57 by lide              #+#    #+#             */
-/*   Updated: 2022/05/20 19:38:10 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/21 18:22:45 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,6 @@ typedef struct s_box
 	void			*mlx_ptr;
 	void			*win_ptr;
 	int				len;
-	int				fd;
 	int				move_y;
 	int				move_x;
 	int				height;
@@ -158,6 +157,7 @@ typedef struct s_box
 	long			var_zi;
 	long			var_ze;
 	int				view;
+	int				help;
 }				t_box;
 
 #endif

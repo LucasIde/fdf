@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 16:44:27 by lide              #+#    #+#             */
-/*   Updated: 2022/05/20 19:26:37 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/21 18:25:27 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int	main(int argc, char **argv)
 		i = -4;
 	// freebox(i, &box);
 	// system("leaks fdf");
-	mlx_hook(box.win_ptr, 17, 1L << 17, close, &box);
+	mlx_hook(box.win_ptr, 17, 1L << 17, ft_close, &box);
 	mlx_hook(box.win_ptr, 2, 1L << 0, &key_press, &box);
 	mlx_hook(box.win_ptr, 3, 1L << 0, &key_release, &box);
 	mlx_hook(box.win_ptr, 4, 1L << 2, &scroll, &box);
@@ -109,7 +109,6 @@ int	main(int argc, char **argv)
 }
 
 //truc a check :
-//ajouter le close fd a close
 //check error init data
 //proteger mlx (init ...)
 //free rainbow

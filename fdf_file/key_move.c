@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 23:54:02 by lide              #+#    #+#             */
-/*   Updated: 2022/05/20 18:45:03 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/21 18:35:04 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,26 @@ void	key_move2(t_box *box)
 	rotate_xyz(box);
 }
 
+void	tab_press(t_box *box)
+{
+	static int tab;
+
+	if (box->key->tab == 1 && tab == 0)
+	{
+		if (box->help == 0)
+			box->help = 1;
+		else if (box->help == 1)
+			box->help = 0;
+		tab = 1;
+	}
+	if (box->key->tab == 0 && tab == 1)
+		tab = 0;
+}
+
 int	key_move(t_box *box)
 {
 	key_move2(box);
+	tab_press(box);
 	if (box->key->r == 1)
 		reset_key(box);
 	if (box->key->zero == 1 || box->key->one == 1 || box->key->two == 1
@@ -97,7 +114,7 @@ int	key_move(t_box *box)
 	if (box->key->esc == 1)
 	{
 		free(box->img);
-		close(0);
+		ft_close(0, box);
 	}
 	dr_map(box);
 	return (0);

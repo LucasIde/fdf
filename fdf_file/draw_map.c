@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 13:45:33 by lide              #+#    #+#             */
-/*   Updated: 2022/05/20 20:32:43 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/21 17:14:05 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,10 +147,10 @@ void	dr_map(t_box *box)
 		screen = 0;
 	}
 	point_finder(box, &m, 0);
-	if (box->key->tab == 1)
+	if (box->help == 1)
 		color_help(box, screen);
 	mlx_put_image_to_window(box->mlx_ptr, box->win_ptr, box->img->img, 0, 0);
-	if (box->key->tab == 0)
+	if (box->help == 0)
 		need_help(box, screen);
 	else
 		display_help(box, screen);

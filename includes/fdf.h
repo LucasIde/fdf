@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 18:08:54 by lide              #+#    #+#             */
-/*   Updated: 2022/05/20 19:34:47 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/21 18:16:52 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ long			ft_atoi(char *str);
 char			*ft_strdup(char *s1);
 int				len_w(char **str);
 int				len_c(char *str);
-int				close(int keycode);
+int				ft_close(int keycode, t_box *box);
 int				check_color(char *str, int len);
 int				check_c(char *splited);
 int				key_move(t_box *box);

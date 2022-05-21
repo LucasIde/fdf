@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 17:13:50 by lide              #+#    #+#             */
-/*   Updated: 2022/05/20 17:28:06 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/21 18:33:36 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	line_ci_i(t_box *box, t_dr_map *m, int event)
 	tmp_y = box->ci->y;
 	tmp_x = box->ci->x;
 	tmp_z = box->he->z[m->y][m->x] * (m->height * box->len);
-	// box->var_zi = box->he->z[m->y][m->x] * (m->height * box->len);
 	rotate_ci(tmp_y, tmp_x, tmp_z, box);
 	box->ci->y += box->move_y * box->len;
 	box->ci->x += box->move_x * box->len;
@@ -49,7 +48,6 @@ void	line_xe_i(t_box *box, t_dr_map *m, int event)
 	tmp_y = box->ce->y;
 	tmp_x = box->ce->x;
 	tmp_z = box->he->z[m->y][m->x + 1] * (m->height2 * box->len);
-	// box->var_ze = box->he->z[m->y][m->x + 1] * (m->height2 * box->len);
 	rotate_ce(tmp_y, tmp_x, tmp_z, box);
 	box->ce->y += box->move_y * box->len;
 	box->ce->x += box->move_x * box->len;
@@ -72,7 +70,6 @@ void	line_ye_i(t_box *box, t_dr_map *m, int event)
 	tmp_y = box->ce->y;
 	tmp_x = box->ce->x;
 	tmp_z = box->he->z[m->y + 1][m->x] * (m->height2 * box->len);
-	// box->var_ze = box->he->z[m->y + 1][m->x] * (m->height2 * box->len);
 	rotate_ce(tmp_y, tmp_x, tmp_z, box);
 	box->ce->y += box->move_y * box->len;
 	box->ce->x += box->move_x * box->len;

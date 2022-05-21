@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 19:33:24 by lide              #+#    #+#             */
-/*   Updated: 2022/05/20 20:11:56 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/21 18:24:53 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,5 @@
 # define H_RESET "reset the position = r"
 # define H_VIEW "change view = i|p"
 # define H_QUIT "quit = esc"
+
 #endif
