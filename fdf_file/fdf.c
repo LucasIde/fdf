@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 16:44:27 by lide              #+#    #+#             */
-/*   Updated: 2022/05/21 18:25:27 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/23 17:02:59 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,14 +89,14 @@ int	main(int argc, char **argv)
 		return (0);
 	init_data(&box);
 	i = p_map(&box, argv[1]);
-	if (i == -4 || i == -1)
+	if (i == -4 || i == -1)//free box puis free init
 		return (0);
 	// print(&box);
 	find_mid(&box);
 	dr_map(&box);
 	find_z(&box);
-	if (i == 0)
-		i = -4;
+	// if (i == 0)
+	// 	i = -4;
 	// freebox(i, &box);
 	// system("leaks fdf");
 	mlx_hook(box.win_ptr, 17, 1L << 17, ft_close, &box);

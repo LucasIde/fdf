@@ -6,23 +6,11 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 23:54:02 by lide              #+#    #+#             */
-/*   Updated: 2022/05/21 18:35:04 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/23 17:41:35 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
-
-int	scroll(int mouse, int x, int y, t_box *box)
-{
-	(void)x;
-	(void)y;
-	(void)box;
-	if (mouse == 4)
-		box->len += 1;
-	else if (mouse == 5 && box->len > 1)
-		box->len -= 1;
-	return (0);
-}
 
 void	reset_key(t_box *box)
 {
@@ -61,28 +49,28 @@ void	rotate_xyz(t_box *box)
 
 void	key_move2(t_box *box)
 {
-	if (box->key->up == 1)
+	if (box->key->up == 1 && box->move_y > -1000000)
 		box->move_y--;
-	if (box->key->down == 1)
+	if (box->key->down == 1 && box->move_y < 1000000)
 		box->move_y++;
-	if (box->key->left == 1)
+	if (box->key->left == 1 && box->move_x > -1000000)
 		box->move_x--;
-	if (box->key->right == 1)
+	if (box->key->right == 1 && box->move_x < 1000000)
 		box->move_x++;
-	if (box->key->z == 1)
+	if (box->key->z == 1 && box->height < 1000000)
 		box->height++;
-	if (box->key->x == 1)
+	if (box->key->x == 1 && box->height > -1000000)
 		box->height--;
-	if (box->key->minus == 1)
+	if (box->key->minus == 1 && box->speed < 100)
 		box->speed++;
-	if (box->key->plus == 1)
+	if (box->key->plus == 1 && box->speed > 1)
 		box->speed--;
 	rotate_xyz(box);
 }
 
 void	tab_press(t_box *box)
 {
-	static int tab;
+	static int	tab;
 
 	if (box->key->tab == 1 && tab == 0)
 	{
@@ -111,7 +99,7 @@ int	key_move(t_box *box)
 		box->view = 0;
 	else if (box->key->i == 0 && box->key->p == 1)
 		box->view = 1;
-	if (box->key->esc == 1)
+	if (box->key->esc == 1)// freede maniere convenable
 	{
 		free(box->img);
 		ft_close(0, box);

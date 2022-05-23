@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:14:04 by lide              #+#    #+#             */
-/*   Updated: 2022/05/21 18:22:37 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/23 18:25:25 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	create_list(char *argv, t_parcing *p)
 	p->fd = open(argv, O_RDONLY);
 	while (p->i == 1)
 	{
-		p->i = get_next_line(p->fd, &(p->line));
+		p->i = get_next_line(p->fd, &(p->line));//bonne gestion de line ?
 		if (p->i == -1)
 		{
 			free_list(p->list);

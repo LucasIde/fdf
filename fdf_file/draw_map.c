@@ -6,37 +6,11 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 13:45:33 by lide              #+#    #+#             */
-/*   Updated: 2022/05/21 17:14:05 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/23 15:36:15 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
-
-void	rotate_ci(double y, double x, double z, t_box *box)
-{
-	box->ci->y = (y * cos(box->rotate_y)) + (z * sin(box->rotate_y));
-	box->var_zi = (-y * sin(box->rotate_y)) + (z * cos(box->rotate_y));
-	z = box->var_zi;
-	box->ci->x = (z * sin(box->rotate_z)) + (x * cos(box->rotate_z));
-	box->var_zi = (z * cos(box->rotate_z)) + (-x * sin(box->rotate_z));
-	x = box->ci->x;
-	y = box->ci->y;
-	box->ci->x = (x * cos(box->rotate_x)) - (y * sin(box->rotate_x));
-	box->ci->y = (x * sin(box->rotate_x)) + (y * cos(box->rotate_x));
-}
-
-void	rotate_ce(double y, double x, double z, t_box *box)
-{
-	box->ce->y = (y * cos(box->rotate_y)) + (z * sin(box->rotate_y));
-	box->var_ze = (-y * sin(box->rotate_y)) + (z * cos(box->rotate_y));
-	z = box->var_ze;
-	box->ce->x = (z * sin(box->rotate_z)) + (x * cos(box->rotate_z));
-	box->var_ze = (z * cos(box->rotate_z)) + (-x * sin(box->rotate_z));
-	x = box->ce->x;
-	y = box->ce->y;
-	box->ce->x = (x * cos(box->rotate_x)) - (y * sin(box->rotate_x));
-	box->ce->y = (x * sin(box->rotate_x)) + (y * cos(box->rotate_x));
-}
 
 void	point_x(t_box *box, t_dr_map *m, int event)
 {
@@ -79,55 +53,6 @@ void	point_finder(t_box *box, t_dr_map *m, int event)
 	}
 }
 
-void	need_help(t_box *box, int screen)
-{
-	if (screen == 1)
-		mlx_string_put(box->mlx_ptr, box->win_ptr, 10, 10, 0x0, HELP);
-	if (screen == 0)
-		mlx_string_put(box->mlx_ptr, box->win_ptr, 10, 10, 0xffffff, HELP);
-}
-
-void	color_help(t_box *box, int screen)
-{
-	int				y;
-	int				x;
-	unsigned int	color;
-
-	color = 0;
-	if (screen == 0)
-		color = 0x0;
-	else if (screen == 1)
-		color = 0x01ffffff;
-	y = -1;
-	while (++y < 60)
-	{
-		x = -1;
-		while (++x < 1500)
-		{
-			dr_pixel(box->img, x, y, color);
-		}
-	}
-}
-
-void	display_help(t_box *box, int screen)
-{
-	unsigned int	color;
-
-	if (screen == 1)
-		color = 0x0;
-	if (screen == 0)
-		color = 0xffffff;
-	mlx_string_put(box->mlx_ptr, box->win_ptr, 10, 10, color, H_COLOR);
-	mlx_string_put(box->mlx_ptr, box->win_ptr, 10, 30, color, H_RAINBOW);
-	mlx_string_put(box->mlx_ptr, box->win_ptr, 310, 10, color, H_HEIGHT);
-	mlx_string_put(box->mlx_ptr, box->win_ptr, 310, 30, color, H_ROTATION);
-	mlx_string_put(box->mlx_ptr, box->win_ptr, 670, 10, color, H_SIZE);
-	mlx_string_put(box->mlx_ptr, box->win_ptr, 670, 30, color, H_MOVE);
-	mlx_string_put(box->mlx_ptr, box->win_ptr, 1050, 10, color, H_RESET);
-	mlx_string_put(box->mlx_ptr, box->win_ptr, 1050, 30, color, H_VIEW);
-	mlx_string_put(box->mlx_ptr, box->win_ptr, 1350, 10, color, H_QUIT);
-}
-
 void	dr_map(t_box *box)
 {
 	t_dr_map		m;
@@ -153,6 +78,6 @@ void	dr_map(t_box *box)
 	if (box->help == 0)
 		need_help(box, screen);
 	else
-		display_help(box, screen);
+		help_display(box, screen);
 	point_finder(box, &m, 1);
 }

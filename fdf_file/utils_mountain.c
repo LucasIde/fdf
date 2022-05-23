@@ -1,26 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_color_template.c                             :+:      :+:    :+:   */
+/*   utils_mountain.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 18:02:51 by lide              #+#    #+#             */
-/*   Updated: 2022/05/13 01:46:53 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/23 15:32:23 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
-
-unsigned int	rainbow_road(unsigned int *template, int size, int y, int x)
-{
-	static int	i = -1;
-
-	i++;
-	if (i >= size || (x == 0 && y == 0))
-		i = 0;
-	return (template[i]);
-}
 
 unsigned int	peak(t_mountain *m)
 {

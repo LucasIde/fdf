@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_color_set.c                                  :+:      :+:    :+:   */
+/*   utils_rainbow.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 22:19:06 by lide              #+#    #+#             */
-/*   Updated: 2022/05/17 18:16:54 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/23 15:31:36 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void	color_scene(t_box *box)
+unsigned int	rainbow_road(unsigned int *template, int size, int y, int x)
 {
-	if (box->key->zero == 1 && box->key->one == 0 && box->key->two == 0
-		&& box->key->three == 0)
-		box->color_set = 0;
-	else if (box->key->zero == 0 && box->key->one == 1 && box->key->two == 0
-		&& box->key->three == 0)
-		box->color_set = 1;
-	else if (box->key->zero == 0 && box->key->one == 0 && box->key->two == 1
-		&& box->key->three == 0)
-		box->color_set = 2;
-	else if (box->key->zero == 0 && box->key->one == 0 && box->key->two == 0
-		&& box->key->three == 1)
-		box->color_set = 3;
+	static int	i = -1;
+
+	i++;
+	if (i >= size || (x == 0 && y == 0))
+		i = 0;
+	return (template[i]);
 }
 
 void	rainbow_move(t_box *box, unsigned int *template, int size)

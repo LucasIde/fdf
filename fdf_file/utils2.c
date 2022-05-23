@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 16:30:24 by lide              #+#    #+#             */
-/*   Updated: 2022/05/12 01:21:56 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/23 15:13:10 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,6 @@ int	check_color(char *str, int len)
 		i++;
 	}
 	return (0);
-}
-
-void	find_delta(t_box *box, int *dy, int *dx)
-{
-	if (box->ce->x >= box->ci->x)
-		*dx = box->ce->x - box->ci->x;
-	else if (box->ce->x < box->ci->x)
-		*dx = box->ci->x - box->ce->x;
-	*dy = box->ce->y - box->ci->y;
 }
 
 unsigned int	hd_to_d(char *str)

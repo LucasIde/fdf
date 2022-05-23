@@ -6,30 +6,35 @@
 #    By: lide <lide@student.s19.be>                 +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/18 18:11:55 by lide              #+#    #+#              #
-#    Updated: 2022/05/20 17:30:24 by lide             ###   ########.fr        #
+#    Updated: 2022/05/23 15:33:22 by lide             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		=	fdf_file/fdf.c\
+SRCS		=	fdf_file/color_handler.c\
+				fdf_file/dr_line.c\
+				fdf_file/draw_map.c\
+				fdf_file/fdf.c\
 				fdf_file/free.c\
-				fdf_file/key_press.c\
-				fdf_file/key_move.c\
+				fdf_file/free2.c\
+				fdf_file/ft_copy.c\
+				fdf_file/help_display.c\
 				fdf_file/isometric_view.c\
+				fdf_file/key_move.c\
+				fdf_file/key_move2.c\
+				fdf_file/key_press.c\
 				fdf_file/parallel_view.c\
 				fdf_file/parcing_map.c\
-				fdf_file/draw_map.c\
+				fdf_file/split.c\
+				fdf_file/utils_color.c\
+				fdf_file/utils_dr_line.c\
 				fdf_file/utils_draw_map.c\
-				fdf_file/color_handler.c\
-				fdf_file/utils_color_template.c\
-				fdf_file/ft_copy.c\
-				fdf_file/utils_color_set.c\
+				fdf_file/utils_libx.c\
+				fdf_file/utils_list.c\
+				fdf_file/utils_mountain.c\
+				fdf_file/utils_rainbow.c\
 				fdf_file/utils.c\
 				fdf_file/utils2.c\
-				fdf_file/utils_list.c\
-				fdf_file/utils_libx.c\
-				fdf_file/split.c\
 				get_next_line/get_next_line.c\
-				fdf_file/dr_line.c\
 				get_next_line/get_next_line_utils.c
 
 NAME		= fdf.a

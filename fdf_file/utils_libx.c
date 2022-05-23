@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 16:27:36 by lide              #+#    #+#             */
-/*   Updated: 2022/05/21 18:38:13 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/23 15:14:44 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,6 @@ int	ft_close(int keycode, t_box *box)
 		keycode = 0;
 	exit(0);
 	return (0);
-}
-
-void	dr_pixel(t_data *img, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = img->addr + (y * img->line_lenght + x * (img->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
 }
 
 void	set_value_key(t_box *box)
@@ -66,24 +58,6 @@ void	set_value_box(t_box *box)
 	box->rotate_z = 0;
 	box->view = 0;
 	box->help = 0;
-}
-
-void	free_data_malloc(t_box *box, int error)
-{
-	if (error > 1)
-		free(box->ci);
-	if (error > 2)
-		free(box->ce);
-	if (error > 3)
-		free(box->c_mid);
-	if (error > 4)
-		free(box->he);
-	if (error > 5)
-		free(box->img);
-	if (error > 6)
-		free(box->key);
-	if (error > 7)
-		free(box->rainbow);
 }
 
 int	data_malloc(t_box *box)
