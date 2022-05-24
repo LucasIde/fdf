@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 18:08:54 by lide              #+#    #+#             */
-/*   Updated: 2022/05/23 18:01:37 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/24 17:55:01 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@
 # include <mlx.h>
 # include <fcntl.h>
 # include <math.h>
+
+//
 # include <stdio.h>
+//
 
 void			dr_pixel(t_data *img, int x, int y, int color);
 void			dr_line(t_box *box, int end);
@@ -31,7 +34,7 @@ long			ft_atoi(char *str);
 char			*ft_strdup(char *s1);
 int				len_w(char **str);
 int				len_c(char *str);
-int				ft_close(int keycode, t_box *box);
+int				ft_close(t_box *box);
 int				check_color(char *str, int len);
 int				check_c(char *splited);
 int				key_move(t_box *box);
@@ -41,7 +44,7 @@ void			free_data_malloc(t_box *box, int error);
 void			free_split(char **splited);
 int				p_map(t_box *box, char *argv);
 int				ft_copy(t_box *box, char **splited, int y);
-int				init_data(t_box *box);
+void			init_data(t_box *box);
 int				key_press(int keycode, t_box *box);
 int				key_release(int keycode, t_box *box);
 int				scroll(int mouse, int x, int y, t_box *box);

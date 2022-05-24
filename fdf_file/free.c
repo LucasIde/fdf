@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 18:51:30 by lide              #+#    #+#             */
-/*   Updated: 2022/05/03 14:19:34 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/24 15:38:47 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ void	freebox(int error, t_box *box)
 		free_z_first(box);
 	if (error <= -2)
 		free(box->he->z);
-	if (error <= -1)
-		free(box->he);
+	// if (error <= -1)
+	// 	free(box->he);
 }
 
 void	free_list(t_list *list)

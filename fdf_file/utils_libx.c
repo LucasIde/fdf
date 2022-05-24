@@ -6,16 +6,19 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 16:27:36 by lide              #+#    #+#             */
-/*   Updated: 2022/05/23 15:14:44 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/24 17:53:25 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-int	ft_close(int keycode, t_box *box)
+int	ft_close(t_box *box)
 {
-	if (box)
-		keycode = 0;
+	mlx_destroy_window(box->mlx_ptr, box->win_ptr);
+	free(box->mlx_ptr);
+	freebox(-4, box);
+	free_data_malloc(box, 8);
+	// system("leaks fdf");
 	exit(0);
 	return (0);
 }
@@ -86,28 +89,38 @@ int	data_malloc(t_box *box)
 	return (0);
 }
 
-int	init_data(t_box *box)
+void	free_init_malloc(t_box *box, int error, int event)
+{
+	if (event == 3)
+		mlx_destroy_window(box->mlx_ptr, box->win_ptr);
+	if (event >= 2)
+		free(box->mlx_ptr);
+	if (event >= 1)
+		free_data_malloc(box, error);
+	exit (1);
+}
+
+void	init_data(t_box *box)
 {
 	int	error;
 
 	error = data_malloc(box);
 	if (error != 0)
-	{
-		free_data_malloc(box, error);
-		return (1);
-	}
+		free_init_malloc(box, error, 1);
 	init_rainbow(box->rainbow);
 	box->mlx_ptr = mlx_init();
 	if (!box->mlx_ptr)
-	{
-		free_data_malloc(box, 8);
-		return (1);
-	}
+		free_init_malloc(box, 8, 1);
 	box->win_ptr = mlx_new_window(box->mlx_ptr, 1920, 1080, "FDF");
+	if (!box->win_ptr)
+		free_init_malloc(box, 8, 2);
 	box->img->img = mlx_new_image(box->mlx_ptr, 1920, 1080);
+	if (!box->img->img)
+		free_init_malloc(box, 8, 3);
 	box->img->addr = mlx_get_data_addr(box->img->img, &box->img->bits_per_pixel,
 			&box->img->line_lenght, &box->img->endian);
+	if (!box->img->addr)
+		free_init_malloc(box, 8, 3);
 	set_value_box(box);
 	set_value_key(box);
-	return (0);
 }

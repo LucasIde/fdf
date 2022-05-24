@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 23:54:02 by lide              #+#    #+#             */
-/*   Updated: 2022/05/23 17:41:35 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/24 15:37:11 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,11 +99,8 @@ int	key_move(t_box *box)
 		box->view = 0;
 	else if (box->key->i == 0 && box->key->p == 1)
 		box->view = 1;
-	if (box->key->esc == 1)// freede maniere convenable
-	{
-		free(box->img);
-		ft_close(0, box);
-	}
+	if (box->key->esc == 1)// free de maniere convenable
+		ft_close(box);
 	dr_map(box);
 	return (0);
 }
