@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 16:44:27 by lide              #+#    #+#             */
-/*   Updated: 2022/05/24 19:02:49 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/24 20:11:22 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ int	main(int argc, char **argv)
 	if (i == -4 || i == -1)
 	{
 		mlx_destroy_window(box.mlx_ptr, box.win_ptr);
-		free(box.mlx_ptr);
 		freebox(i, &box);
 		free_data_malloc(&box, 8);
 		system("leaks fdf");

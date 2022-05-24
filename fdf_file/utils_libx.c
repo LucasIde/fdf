@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 16:27:36 by lide              #+#    #+#             */
-/*   Updated: 2022/05/24 17:53:25 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/24 20:21:25 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 int	ft_close(t_box *box)
 {
 	mlx_destroy_window(box->mlx_ptr, box->win_ptr);
-	free(box->mlx_ptr);
 	freebox(-4, box);
 	free_data_malloc(box, 8);
-	// system("leaks fdf");
 	exit(0);
 	return (0);
 }
@@ -93,8 +91,6 @@ void	free_init_malloc(t_box *box, int error, int event)
 {
 	if (event == 3)
 		mlx_destroy_window(box->mlx_ptr, box->win_ptr);
-	if (event >= 2)
-		free(box->mlx_ptr);
 	if (event >= 1)
 		free_data_malloc(box, error);
 	exit (1);
