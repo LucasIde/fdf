@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 16:27:36 by lide              #+#    #+#             */
-/*   Updated: 2022/05/24 20:21:25 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/25 19:25:33 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 int	ft_close(t_box *box)
 {
+	mlx_destroy_image(box->mlx_ptr, box->img);
 	mlx_destroy_window(box->mlx_ptr, box->win_ptr);
 	freebox(-4, box);
-	free_data_malloc(box, 8);
+	free_data_malloc(box, 8, 1);
 	exit(0);
 	return (0);
 }
@@ -87,15 +88,6 @@ int	data_malloc(t_box *box)
 	return (0);
 }
 
-void	free_init_malloc(t_box *box, int error, int event)
-{
-	if (event == 3)
-		mlx_destroy_window(box->mlx_ptr, box->win_ptr);
-	if (event >= 1)
-		free_data_malloc(box, error);
-	exit (1);
-}
-
 void	init_data(t_box *box)
 {
 	int	error;
@@ -109,10 +101,10 @@ void	init_data(t_box *box)
 		free_init_malloc(box, 8, 1);
 	box->win_ptr = mlx_new_window(box->mlx_ptr, 1920, 1080, "FDF");
 	if (!box->win_ptr)
-		free_init_malloc(box, 8, 2);
+		free_init_malloc(box, 8, 1);
 	box->img->img = mlx_new_image(box->mlx_ptr, 1920, 1080);
 	if (!box->img->img)
-		free_init_malloc(box, 8, 3);
+		free_init_malloc(box, 8, 2);
 	box->img->addr = mlx_get_data_addr(box->img->img, &box->img->bits_per_pixel,
 			&box->img->line_lenght, &box->img->endian);
 	if (!box->img->addr)

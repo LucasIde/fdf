@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 17:13:50 by lide              #+#    #+#             */
-/*   Updated: 2022/05/21 18:33:36 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/25 17:00:30 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	line_ci_i(t_box *box, t_dr_map *m, int event)
 {
-	int	tmp_x;
-	int	tmp_y;
-	int	tmp_z;
+	long	tmp_x;
+	long	tmp_y;
+	long	tmp_z;
 
 	box->ci->color = init_color(box, m->y, m->x, event);
 	box->ci->y = (m->y + m->iso_y) * box->len;
@@ -36,9 +36,9 @@ void	line_ci_i(t_box *box, t_dr_map *m, int event)
 
 void	line_xe_i(t_box *box, t_dr_map *m, int event)
 {
-	int	tmp_x;
-	int	tmp_y;
-	int	tmp_z;
+	long	tmp_x;
+	long	tmp_y;
+	long	tmp_z;
 
 	box->ce->color = init_color(box, m->y, m->x + 1, event);
 	box->ce->y = (m->y + m->iso_y + 1) * box->len;
@@ -58,9 +58,9 @@ void	line_xe_i(t_box *box, t_dr_map *m, int event)
 
 void	line_ye_i(t_box *box, t_dr_map *m, int event)
 {
-	int	tmp_x;
-	int	tmp_y;
-	int	tmp_z;
+	long	tmp_x;
+	long	tmp_y;
+	long	tmp_z;
 
 	box->ce->color = init_color(box, m->y + 1, m->x, event);
 	box->ce->y = (m->y + m->iso_y + 1) * box->len;

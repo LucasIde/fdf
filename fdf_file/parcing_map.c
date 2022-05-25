@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:14:04 by lide              #+#    #+#             */
-/*   Updated: 2022/05/24 19:27:09 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/25 19:21:22 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	create_list(char *argv, t_parcing *p)
 	p->fd = open(argv, O_RDONLY);
 	while (p->i == 1)
 	{
-		p->i = get_next_line(p->fd, &(p->line));//bonne gestion de line ?
+		p->i = get_next_line(p->fd, &(p->line));
 		if (p->i == -1)
 		{
 			free_list(p->list);
@@ -41,10 +41,25 @@ int	create_list(char *argv, t_parcing *p)
 	return (0);
 }
 
+int	free_first_m(t_parcing *p, int error)
+{
+	free(p->list);
+	if (error < 0)
+		write(2, "Error : Malloc first_malloc\n", 28);
+	else
+	{
+		write(2, "Error : the map is too big\n", 27);
+		error = -1;
+	}
+	return (error);
+}
+
 int	first_malloc(t_box *box, t_parcing *p)
 {
 	while (p->list->next != NULL && p->list->next->line != -1)
 	{
+		if (p->len == 2147483647)
+			return (free_first_m(p, 0));
 		p->len++;
 		p->list = p->list->next;
 	}
@@ -52,18 +67,10 @@ int	first_malloc(t_box *box, t_parcing *p)
 		p->list = p->list->next;
 	box->he->z = (long **)malloc(sizeof(long *) * (p->len + 2));
 	if (!box->he->z)
-	{
-		free_list(p->list);
-		write(2, "Error : Malloc 1 p_map\n", 23);
-		return (-1);
-	}
+		return (free_first_m(p, -1));
 	box->he->color = (char ***)malloc(sizeof(char **) * (p->len + 2));
 	if (!box->he->color)
-	{
-		free_list(p->list);
-		write(2, "Error : Malloc 2 p_map\n", 23);
-		return (-2);
-	}
+		return (free_first_m(p, -2));
 	return (0);
 }
 
@@ -72,13 +79,23 @@ int	list_to_box(t_box *box, t_parcing *p)
 	while (++p->y <= p->len)
 	{
 		p->splited = ft_split((char *)p->list->content, ' ');
+		if (!p->splited)
+		{
+			write(2, "Error : ft_split\n", 17);
+			return (-3);
+		}
+		if (p->y == 0)
+		{
+			if ((len_w(p->splited) * p->len) > 2147483647)
+			{
+				write(2, "Error : the map is too big\n", 27);
+				return (-3);
+			}
+		}
 		p->verif = ft_copy(box, p->splited, p->y);
 		free_split(p->splited);
 		if (p->verif < 0)
-		{
-			free_list(p->list);
-			return (p->verif);
-		}
+			free_list_to_box_error(p);
 		if (p->list->next != NULL)
 			p->list = p->list->next;
 	}

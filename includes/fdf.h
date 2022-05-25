@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 18:08:54 by lide              #+#    #+#             */
-/*   Updated: 2022/05/24 17:55:01 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/25 19:26:20 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,6 @@
 # include <mlx.h>
 # include <fcntl.h>
 # include <math.h>
-
-//
-# include <stdio.h>
-//
 
 void			dr_pixel(t_data *img, int x, int y, int color);
 void			dr_line(t_box *box, int end);
@@ -40,7 +36,10 @@ int				check_c(char *splited);
 int				key_move(t_box *box);
 void			freebox(int error, t_box *box);
 void			free_list(t_list *list);
-void			free_data_malloc(t_box *box, int error);
+void			free_data_malloc(t_box *box, int error, int verif);
+void			free_init_malloc(t_box *box, int error, int event);
+int				free_list_to_box_error(t_parcing *p);
+void			free_p_map_error(t_box *box, int i);
 void			free_split(char **splited);
 int				p_map(t_box *box, char *argv);
 int				ft_copy(t_box *box, char **splited, int y);

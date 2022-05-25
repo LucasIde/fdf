@@ -6,26 +6,11 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 16:44:27 by lide              #+#    #+#             */
-/*   Updated: 2022/05/24 20:21:59 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/25 19:07:45 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
-
-// void	print(t_box *box)
-// {
-// 	int	y;
-// 	int	x;
-
-// 	y = -1;
-// 	while (box->he->z[++y])
-// 	{
-// 		x = -1;
-// 		while (box->he->z[y][++x] != 2147483649)
-// 			printf("-| %ld , %s |-\n", box->he->z[y][x], box->he->color[y][x]);
-// 		printf("\n");
-// 	}
-// }
 
 int	check_fdf(char *argv)
 {
@@ -93,14 +78,7 @@ int	main(int argc, char **argv)
 	init_data(&box);
 	i = p_map(&box, argv[1]);
 	if (i == -4 || i == -1)
-	{
-		mlx_destroy_window(box.mlx_ptr, box.win_ptr);
-		freebox(i, &box);
-		free_data_malloc(&box, 8);
-		system("leaks fdf");
-		exit (1);
-	}
-	// print(&box);
+		free_p_map_error(&box, i);
 	find_mid(&box);
 	dr_map(&box);
 	find_z(&box);
@@ -112,10 +90,3 @@ int	main(int argc, char **argv)
 	mlx_loop(box.mlx_ptr);
 	return (0);
 }
-
-//truc a check :
-//check error init data
-//proteger mlx (init ...)
-//free rainbow
-//check cmd bug
-//pour ecrire utiliser define
