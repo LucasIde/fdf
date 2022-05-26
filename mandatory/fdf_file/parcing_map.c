@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:14:04 by lide              #+#    #+#             */
-/*   Updated: 2022/05/25 19:21:22 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/26 16:08:52 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	create_list(char *argv, t_parcing *p)
 			if (!p->list)
 				free(p->line);
 			free_list(p->list);
-			get_next_line(-1, NULL);
+			get_next_line(-2, NULL);
 			write(2, "Error : Malloc lstnew\n", 22);
 			return (-1);
 		}
