@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 16:27:36 by lide              #+#    #+#             */
-/*   Updated: 2022/05/26 16:58:43 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/26 19:31:04 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,23 @@ void	init_data(t_box *box)
 	if (!box->img->addr)
 		free_init_malloc(box, 8, 3);
 	set_value_box(box);
+}
+
+int	check_empty_line(t_parcing *p)
+{
+	while (p->list->next != NULL && p->list->line != -1)
+		p->list = p->list->next;
+	if (p->list->next == NULL && ((char *)p->list->content)[0] == '\0')
+		return (-1);
+	while (p->list->next != NULL && p->list->next->line != -1)
+	{
+		if (((char *)p->list->content)[0] == '\0')
+			return (-1);
+		p->list = p->list->next;
+	}
+	if (((char *)p->list->content)[0] == '\0')
+		return (-1);
+	if (p->list->next != NULL)
+		p->list = p->list->next;
+	return (0);
 }

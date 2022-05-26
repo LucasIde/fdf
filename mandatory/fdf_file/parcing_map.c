@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:14:04 by lide              #+#    #+#             */
-/*   Updated: 2022/05/26 16:08:52 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/26 19:31:09 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int	list_to_box(t_box *box, t_parcing *p)
 		p->verif = ft_copy(box, p->splited, p->y);
 		free_split(p->splited);
 		if (p->verif < 0)
-			free_list_to_box_error(p);
+			free_list_to_box_error(box, p);
 		if (p->list->next != NULL)
 			p->list = p->list->next;
 	}
@@ -115,6 +115,12 @@ int	p_map(t_box *box, char *argv)
 	p.verif = create_list(argv, &p);
 	if (p.verif != 0)
 		return (p.verif);
+	p.verif = check_empty_line(&p);
+	if (p.verif != 0)
+	{
+		write(2, "Error : there is an empty line\n", 31);
+		return (p.verif);
+	}
 	p.verif = first_malloc(box, &p);
 	if (p.verif != 0)
 		return (p.verif);

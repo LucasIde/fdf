@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 18:08:54 by lide              #+#    #+#             */
-/*   Updated: 2022/05/26 16:43:01 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/26 19:32:28 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void			freebox(int error, t_box *box);
 void			free_list(t_list *list);
 void			free_data_malloc(t_box *box, int error, int verif);
 void			free_init_malloc(t_box *box, int error, int event);
-int				free_list_to_box_error(t_parcing *p);
+void			free_list_to_box_error(t_box *box, t_parcing *p);
 void			free_p_map_error(t_box *box, int i);
 void			free_split(char **splited);
 int				p_map(t_box *box, char *argv);
@@ -56,5 +56,7 @@ void			line_y_p(t_box *box, t_dr_map *m, int event);
 void			line_x_p(t_box *box, t_dr_map *m, int event);
 void			line_y_i(t_box *box, t_dr_map *m, int event);
 void			line_x_i(t_box *box, t_dr_map *m, int event);
+void			line_ci_i(t_box *box, t_dr_map *m, int event);
+int				check_empty_line(t_parcing *p);
 
 #endif

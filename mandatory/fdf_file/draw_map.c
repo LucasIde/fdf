@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 13:45:33 by lide              #+#    #+#             */
-/*   Updated: 2022/05/26 16:38:46 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/26 19:26:02 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ int	add_height(t_box *box, int y, int x)
 		return (1);
 }
 
-void	init_dr_map(t_box *box, t_dr_map *m)
+void	init_dr_map(t_box *box, t_dr_map *m, int event)
 {
+	int	y;
+
 	m->len_x = 0;
 	m->len_y = 0;
 	while (box->he->z[0][m->len_x] != 2147483649)
@@ -31,11 +33,18 @@ void	init_dr_map(t_box *box, t_dr_map *m)
 	m->y = -1;
 	m->iso_x = 0;
 	m->i = 0;
+	if (m->len_x == 1 && m->len_y == 1)
+	{
+		y = 540 + (box->he->z[0][0] * box->len);
+		box->color = init_color(box, 0, 0, event);
+		if (y < 1080 && y > -1)
+			dr_pixel(box->img, 960, y, box->color);
+	}
 }
 
 void	point_finder(t_box *box, t_dr_map *m, int event)
 {
-	init_dr_map(box, m);
+	init_dr_map(box, m, event);
 	while (++m->y < m->len_y)
 	{
 		m->x = -1;

@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   fdf_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 18:08:54 by lide              #+#    #+#             */
-/*   Updated: 2022/05/26 15:26:39 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/26 19:27:57 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#ifndef FDF_BONUS_H
+# define FDF_BONUS_H
 
 # include "../../get_next_line/get_next_line.h"
-# include "define.h"
-# include "struct.h"
+# include "define_bonus.h"
+# include "struct_bonus.h"
 # include <mlx.h>
 # include <fcntl.h>
 # include <math.h>
@@ -38,7 +38,7 @@ void			freebox(int error, t_box *box);
 void			free_list(t_list *list);
 void			free_data_malloc(t_box *box, int error, int verif);
 void			free_init_malloc(t_box *box, int error, int event);
-int				free_list_to_box_error(t_parcing *p);
+void			free_list_to_box_error(t_box *box, t_parcing *p);
 void			free_p_map_error(t_box *box, int i);
 void			free_split(char **splited);
 int				p_map(t_box *box, char *argv);
@@ -51,7 +51,7 @@ void			dr_map(t_box *box);
 unsigned int	hd_to_d(char *str);
 void			set_color(t_box *box, int event, t_color *c);
 int				add_height(t_box *box, int y, int x);
-void			init_dr_map(t_box *box, t_dr_map *m);
+void			init_dr_map(t_box *box, t_dr_map *m, int event);
 unsigned int	init_color(t_box *box, int y, int x, int event);
 void			find_delta(t_box *box, int *dy, int *dx);
 void			color_scene(t_box *box);
@@ -70,6 +70,7 @@ void			line_x_i(t_box *box, t_dr_map *m, int event);
 void			help_display(t_box *box, int screen);
 void			color_help(t_box *box, int screen);
 void			need_help(t_box *box, int screen);
+int				check_empty_line(t_parcing *p);
 void			color_screen( int screen, t_box *box);
 
 #endif

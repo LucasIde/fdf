@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_map.c                                         :+:      :+:    :+:   */
+/*   draw_map_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 13:45:33 by lide              #+#    #+#             */
-/*   Updated: 2022/05/25 19:12:33 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/26 19:05:57 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "../includes/fdf_bonus.h"
 
 void	point_x(t_box *box, t_dr_map *m, int event)
 {
@@ -34,7 +34,7 @@ void	point_y(t_box *box, t_dr_map *m, int event)
 
 void	point_finder(t_box *box, t_dr_map *m, int event)
 {
-	init_dr_map(box, m);
+	init_dr_map(box, m, event);
 	while (++m->y < m->len_y)
 	{
 		m->x = -1;

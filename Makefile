@@ -6,34 +6,34 @@
 #    By: lide <lide@student.s19.be>                 +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/18 18:11:55 by lide              #+#    #+#              #
-#    Updated: 2022/05/26 16:43:55 by lide             ###   ########.fr        #
+#    Updated: 2022/05/26 17:15:10 by lide             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS_BONUS	=	bonus/fdf_file/color_handler.c\
-				bonus/fdf_file/dr_line.c\
-				bonus/fdf_file/draw_map.c\
-				bonus/fdf_file/fdf.c\
-				bonus/fdf_file/free.c\
-				bonus/fdf_file/free2.c\
-				bonus/fdf_file/ft_copy.c\
-				bonus/fdf_file/help_display.c\
-				bonus/fdf_file/isometric_view.c\
-				bonus/fdf_file/key_move.c\
-				bonus/fdf_file/key_move2.c\
-				bonus/fdf_file/key_press.c\
-				bonus/fdf_file/parallel_view.c\
-				bonus/fdf_file/parcing_map.c\
-				bonus/fdf_file/split.c\
-				bonus/fdf_file/utils_color.c\
-				bonus/fdf_file/utils_dr_line.c\
-				bonus/fdf_file/utils_draw_map.c\
-				bonus/fdf_file/utils_libx.c\
-				bonus/fdf_file/utils_list.c\
-				bonus/fdf_file/utils_mountain.c\
-				bonus/fdf_file/utils_rainbow.c\
-				bonus/fdf_file/utils.c\
-				bonus/fdf_file/utils2.c\
+SRCS_BONUS	=	bonus/fdf_file/color_handler_bonus.c\
+				bonus/fdf_file/dr_line_bonus.c\
+				bonus/fdf_file/draw_map_bonus.c\
+				bonus/fdf_file/fdf_bonus.c\
+				bonus/fdf_file/free_bonus.c\
+				bonus/fdf_file/free2_bonus.c\
+				bonus/fdf_file/ft_copy_bonus.c\
+				bonus/fdf_file/help_display_bonus.c\
+				bonus/fdf_file/isometric_view_bonus.c\
+				bonus/fdf_file/key_move_bonus.c\
+				bonus/fdf_file/key_move2_bonus.c\
+				bonus/fdf_file/key_press_bonus.c\
+				bonus/fdf_file/parallel_view_bonus.c\
+				bonus/fdf_file/parcing_map_bonus.c\
+				bonus/fdf_file/split_bonus.c\
+				bonus/fdf_file/utils_color_bonus.c\
+				bonus/fdf_file/utils_dr_line_bonus.c\
+				bonus/fdf_file/utils_draw_map_bonus.c\
+				bonus/fdf_file/utils_libx_bonus.c\
+				bonus/fdf_file/utils_list_bonus.c\
+				bonus/fdf_file/utils_mountain_bonus.c\
+				bonus/fdf_file/utils_rainbow_bonus.c\
+				bonus/fdf_file/utils_bonus.c\
+				bonus/fdf_file/utils2_bonus.c\
 				get_next_line/get_next_line.c\
 				get_next_line/get_next_line_utils.c
 

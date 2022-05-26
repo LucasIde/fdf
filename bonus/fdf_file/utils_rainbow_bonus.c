@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_rainbow.c                                    :+:      :+:    :+:   */
+/*   utils_rainbow_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 22:19:06 by lide              #+#    #+#             */
-/*   Updated: 2022/05/23 15:31:36 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/26 17:10:12 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "../includes/fdf_bonus.h"
 
 unsigned int	rainbow_road(unsigned int *template, int size, int y, int x)
 {

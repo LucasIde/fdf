@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free2.c                                            :+:      :+:    :+:   */
+/*   free2_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 15:14:12 by lide              #+#    #+#             */
-/*   Updated: 2022/05/26 15:10:39 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/26 18:11:40 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "../includes/fdf_bonus.h"
 
 void	print_init_error(int error)
 {
@@ -73,8 +73,12 @@ void	free_init_malloc(t_box *box, int error, int event)
 	exit (1);
 }
 
-int	free_list_to_box_error(t_parcing *p)
+void	free_list_to_box_error(t_box *box, t_parcing *p)
 {
 	free_list(p->list);
-	return (p->verif);
+	mlx_destroy_image(box->mlx_ptr, box->img);
+	mlx_destroy_window(box->mlx_ptr, box->win_ptr);
+	freebox(p->verif, box);
+	free_data_malloc(box, 8, 1);
+	exit (1);
 }
