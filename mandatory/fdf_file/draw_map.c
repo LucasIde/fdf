@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 13:45:33 by lide              #+#    #+#             */
-/*   Updated: 2022/05/26 19:26:02 by lide             ###   ########.fr       */
+/*   Updated: 2022/05/27 14:58:03 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	init_dr_map(t_box *box, t_dr_map *m, int event)
 	m->i = 0;
 	if (m->len_x == 1 && m->len_y == 1)
 	{
-		y = 540 + (box->he->z[0][0] * box->len);
+		y = 540 - (box->he->z[0][0] * box->len);
 		box->color = init_color(box, 0, 0, event);
 		if (y < 1080 && y > -1)
 			dr_pixel(box->img, 960, y, box->color);
