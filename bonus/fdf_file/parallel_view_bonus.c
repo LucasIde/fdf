@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 17:29:05 by lide              #+#    #+#             */
-/*   Updated: 2022/05/26 17:10:12 by lide             ###   ########.fr       */
+/*   Updated: 2022/10/05 17:18:38 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	line_ci_p(t_box *box, t_dr_map *m, int event)
 	box->ci->y -= box->var_zi;
 	box->ci->y += box->move_y * box->len;
 	box->ci->x += box->move_x * box->len;
+	box->ci->y *= 2;
+	box->ci->x *= 2;
 	box->ci->y *= sin(0.785398);
 	box->ci->x *= cos(0.785398);
 	box->ci->y += 540 - ((m->len_y / 2) * box->len);
@@ -54,6 +56,8 @@ void	line_xe_p(t_box *box, t_dr_map *m, int event)
 	box->ce->y -= box->var_ze;
 	box->ce->y += box->move_y * box->len;
 	box->ce->x += box->move_x * box->len;
+	box->ce->y *= 2;
+	box->ce->x *= 2;
 	box->ce->y *= sin(0.785398);
 	box->ce->x *= cos(0.785398);
 	box->ce->y += 540 - ((m->len_y / 2) * box->len);
@@ -78,6 +82,8 @@ void	line_ye_p(t_box *box, t_dr_map *m, int event)
 	box->ce->y -= box->var_ze;
 	box->ce->y += box->move_y * box->len;
 	box->ce->x += box->move_x * box->len;
+	box->ce->y *= 2;
+	box->ce->x *= 2;
 	box->ce->y *= sin(0.785398);
 	box->ce->x *= cos(0.785398);
 	box->ce->y += 540 - ((m->len_y / 2) * box->len);
