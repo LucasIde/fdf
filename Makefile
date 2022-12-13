@@ -6,7 +6,7 @@
 #    By: lide <lide@student.s19.be>                 +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/18 18:11:55 by lide              #+#    #+#              #
-#    Updated: 2022/05/26 17:15:10 by lide             ###   ########.fr        #
+#    Updated: 2022/11/14 14:32:08 by lide             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,9 +63,9 @@ EXEC		= fdf
 EXEC_BONUS	= fdf_bonus
 OBJS		= ${SRCS:.c=.o}
 OBJS_BONUS	= ${SRCS_BONUS:.c=.o}
-CC			= @gcc
+CC			= gcc
 .c.o:
-		@gcc -Wall -Wextra -Werror -c -I./ $< -o ${<:.c=.o}
+		gcc -Wall -Wextra -Werror -O3 -c -I./ $< -o ${<:.c=.o}
 
 all : ${NAME}
 
@@ -77,7 +77,7 @@ ${NAME}: ${OBJS}
 
 ${NAME_BONUS}: ${OBJS_BONUS}
 		@ar -rc ${NAME_BONUS} ${OBJS_BONUS}
-		$(CC) -lmlx -framework OpenGL -framework AppKit ${NAME_BONUS}
+		$(CC) -O3 -lmlx -framework OpenGL -framework AppKit ${NAME_BONUS}
 		@mv ./a.out ${EXEC_BONUS}
 		@echo "fdf_bonus created"
 
